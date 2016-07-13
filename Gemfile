@@ -26,6 +26,7 @@ gem 'active_model_serializers'
 gem 'rack-cors', require: 'rack/cors'
 gem 'pry-rails'
 gem 'tainbox'
+gem 'with_advisory_lock'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

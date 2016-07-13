@@ -5,11 +5,11 @@ class Api::V1::DirectionsController < Api::ApiController
   end
 
   def create
-    direction = Direction.new(params[:direction].symbolize_keys)
-    if direction.save
-      render json: { direction: direction }
+    form = Form::Direction.new(Direction.new, params[:direction])
+    if form.submit
+      render json: { direction: form.object }
     else
-      render json: { errors: direction.errors }, status: :uprocessable_entity
+      render json: { errors: form.errors }, status: :uprocessable_entity
     end
   end
 end
