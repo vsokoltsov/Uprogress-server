@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708203712) do
+ActiveRecord::Schema.define(version: 20160727221247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,5 +25,18 @@ ActiveRecord::Schema.define(version: 20160708203712) do
 
   add_index "directions", ["description"], name: "index_directions_on_description", using: :btree
   add_index "directions", ["title"], name: "index_directions_on_title", using: :btree
+
+  create_table "steps", force: :cascade do |t|
+    t.integer  "direction_id",                 null: false
+    t.string   "title",                        null: false
+    t.text     "result"
+    t.boolean  "is_done",      default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "steps", ["direction_id"], name: "index_steps_on_direction_id", using: :btree
+  add_index "steps", ["is_done"], name: "index_steps_on_is_done", using: :btree
+  add_index "steps", ["title"], name: "index_steps_on_title", using: :btree
 
 end
