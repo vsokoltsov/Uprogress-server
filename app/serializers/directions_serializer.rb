@@ -1,4 +1,6 @@
 class DirectionsSerializer < ActiveModel::Serializer
   root 'directions'
-  attributes :title, :description
+  attributes :id, :title, :description, :percents_result
+
+  delegate :percents_result, to: :object
 end

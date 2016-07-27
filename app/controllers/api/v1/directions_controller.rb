@@ -1,7 +1,7 @@
 class Api::V1::DirectionsController < Api::ApiController
   def index
     directions = Direction.all
-    render json: directions
+    render json: directions, each_serializer: DirectionsSerializer
   end
 
   def create
