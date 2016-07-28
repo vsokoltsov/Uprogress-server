@@ -15,7 +15,7 @@ class Api::V1::DirectionsController < Api::ApiController
 
   def show
     direction = Direction.find(params[:id])
-    render json: { direction: direction }
+    render json: direction, serializer: DirectionSerializer
   end
 
   def update
