@@ -5,7 +5,7 @@ class Api::V1::StepsController < Api::ApiController
     step = Step.find(params[:id])
     form = Form::Step.new(step, params[:step])
     if form.submit
-      render json: form.object.direction, serializer: DirectionSerializer
+      render json: form.object, serializer: UpdatedStepSerializer
     else
       render json: { errors: form.errors }
     end
