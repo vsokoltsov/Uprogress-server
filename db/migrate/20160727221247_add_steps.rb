@@ -4,7 +4,7 @@ class AddSteps < ActiveRecord::Migration
       t.belongs_to :direction, index: true, null: false
       t.string :title, index: true, null: false
       t.text :result
-      t.boolean :is_done, index: true, default: false, null: false
+      t.boolean :is_done, index: true, default: false
       t.timestamps
     end
   end

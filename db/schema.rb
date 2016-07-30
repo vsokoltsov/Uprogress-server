@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160727221247) do
     t.integer  "direction_id",                 null: false
     t.string   "title",                        null: false
     t.text     "result"
-    t.boolean  "is_done",      default: false, null: false
+    t.boolean  "is_done",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
