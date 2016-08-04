@@ -11,7 +11,6 @@ class Api::V1::StepsController < Api::ApiController
   end
 
   def update
-    direction = Direction.find(params[:direction_id])
     step = Step.find(params[:id])
     form = Form::Step.new(step, params[:step])
     if form.submit
@@ -19,5 +18,10 @@ class Api::V1::StepsController < Api::ApiController
     else
       render json: { errors: form.errors }
     end
+  end
+
+  def destroy
+    step = Step.find(params[:id])
+    render json: step, serializer: UpdatedStepSerializer if step.destroy
   end
 end

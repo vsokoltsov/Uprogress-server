@@ -1,7 +1,7 @@
 class Form::Step < Form::Base
   attribute :title
   attribute :is_done
-  attribute :result
+  attribute :description
 
-  validates :title, presence: true
+  validates :title, :description, presence: true
 end
