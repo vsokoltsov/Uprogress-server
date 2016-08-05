@@ -16,7 +16,7 @@ class Api::V1::StepsController < Api::ApiController
     if form.submit
       render json: form.object, serializer: UpdatedStepSerializer
     else
-      render json: { errors: form.errors }
+      render json: { errors: form.errors }, status: :unprocessable_entity
     end
   end
 
