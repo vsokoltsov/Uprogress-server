@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class DirectionSerializer < ActiveModel::Serializer
   root 'direction'
   attributes :id, :title, :description, :percents_result

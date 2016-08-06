@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class UpdatedStepSerializer < ActiveModel::Serializer
   root 'step'
   attributes :id, :title, :description, :is_done

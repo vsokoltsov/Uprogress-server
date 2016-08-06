@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Api::V1::DirectionsController < Api::ApiController
   def index
     directions = Direction.all

@@ -1,0 +1,54 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - 'db/schema.rb'
+    - 'app/models/form/**/*'
+    
+Rails:
+  Enabled: true
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100
+  AllowHeredoc: true
+  AllowURI: true
+  URISchemes:
+    - http
+    - https
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Rails/Validation:
+  Enabled: false
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - db/migrate/*
+
+Lint/HandleExceptions:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Style/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Style/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Style/GlobalVars:
+  Enabled: false
+
+Style/CommentAnnotation:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false

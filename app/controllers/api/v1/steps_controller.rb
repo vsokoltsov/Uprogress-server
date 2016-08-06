@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Api::V1::StepsController < Api::ApiController
 
   def create
