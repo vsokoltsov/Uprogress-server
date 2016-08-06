@@ -95,6 +95,8 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    olive_branch (1.1.0)
+      rails (>= 4.0)
     parser (2.3.1.2)
       ast (~> 2.2)
     pg (0.18.4)
@@ -222,6 +224,7 @@ DEPENDENCIES
   jquery-rails
   json_spec
   launchy
+  olive_branch
   pg (~> 0.15)
   pry-rails
   rack-cors

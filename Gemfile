@@ -16,6 +16,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'pry-rails'
 gem 'tainbox'
 gem 'with_advisory_lock'
+gem 'olive_branch'
 
 group :development, :test do
   gem 'rspec-rails'
