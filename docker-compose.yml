@@ -32,19 +32,19 @@ db:
   volumes:
     - docker-example-postgres:/var/lib/postgresql/data
 
-# # service configuration for our web server
-# web:
-#
-#   # set the build context to the root of the Rails app
-#   build: .
-#
-#   # build with a different Dockerfile
-#   dockerfile: config/containers/Dockerfile-nginx
-#
-#   # makes the web container aware of the app container
-#   links:
-#     - app
-#
-#   # expose the port we configured Nginx to bind to
-#   ports:
-#     - "80:80"
+# service configuration for our web server
+web:
+
+  # set the build context to the root of the Rails app
+  build: .
+
+  # build with a different Dockerfile
+  dockerfile: config/containers/Dockerfile-nginx
+
+  # makes the web container aware of the app container
+  links:
+    - app
+
+  # expose the port we configured Nginx to bind to
+  ports:
+    - "80:80"
