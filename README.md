@@ -13,7 +13,10 @@ After that, you can run server with
 For accessing to specs you need to perform
 `docker-compose run app bundle exec rake db:create RAILS_ENV=test` command
 
+Also, if you want to run specs from command line, you should do it with `env` prefix
+Like that `RAILS_ENV=test`
+
 ## Console
 
 For accessing to console (running specs, rake tasks, etc.)
-call this `docker exec -it uprogressserver_app_1 /bin/bash`
+call this `docker exec -it uprogressserver_app_run_1 /bin/bash`
