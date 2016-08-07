@@ -1,6 +1,7 @@
 # service configuration for our dockerized Rails app
 app:
-
+  tty: true
+  stdin_open: true
   # use the Dockerfile next to this file
   build: .
 
@@ -14,6 +15,8 @@ app:
   # makes the app container aware of the DB container
   links:
     - db
+  volumes:
+    - './:/var/www/docker_example'
 
   # expose the port we configured Unicorn to bind to
   ports:
@@ -33,18 +36,18 @@ db:
     - docker-example-postgres:/var/lib/postgresql/data
 
 # service configuration for our web server
-web:
-
-  # set the build context to the root of the Rails app
-  build: .
-
-  # build with a different Dockerfile
-  dockerfile: config/containers/Dockerfile-nginx
-
-  # makes the web container aware of the app container
-  links:
-    - app
-
-  # expose the port we configured Nginx to bind to
-  ports:
-    - "80:80"
+# web:
+#
+#   # set the build context to the root of the Rails app
+#   build: .
+#
+#   # build with a different Dockerfile
+#   dockerfile: config/containers/Dockerfile-nginx
+#
+#   # makes the web container aware of the app container
+#   links:
+#     - app
+#
+#   # expose the port we configured Nginx to bind to
+#   ports:
+#     - "80:80"

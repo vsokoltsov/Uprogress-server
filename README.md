@@ -6,7 +6,7 @@ Then you need to create database and run migrations
 (And maybe `db:seed` for seeds)
 
 After that, you can run server with
-`docker-compose up` (or `docker-compose up -d in background`)
+`docker-compose run --service-ports app` (in development, with support of debug and code reload)
 
 ## Specs
 
