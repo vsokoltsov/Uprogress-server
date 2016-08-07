@@ -7,3 +7,13 @@ Then you need to create database and run migrations
 
 After that, you can run server with
 `docker-compose up` (or `docker-compose up -d in background`)
+
+## Specs
+
+For accessing to specs you need to perform
+`docker-compose run app bundle exec rake db:create RAILS_ENV=test` command
+
+## Console
+
+For accessing to console (running specs, rake tasks, etc.)
+call this `docker exec -it uprogressserver_app_1 /bin/bash`
