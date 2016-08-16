@@ -81,11 +81,48 @@ describe Api::V1::DirectionsController do
 
   describe 'PUT #update' do
     context 'with valid attributes' do
+      it 'update an direction' do
+        put :update, id: direction.id, direction: { title: direction.title,
+                                                    description: 'aaa' }
+        direction.reload
+        expect(direction.description).to eq('aaa')
+      end
 
+      context 'response' do
+        before do
+          put :update, id: direction.id, direction: { title: direction.title,
+                                                      description: 'aaa' }
+          direction.reload
+        end
+
+        %w(id title description percents_result steps).each do |attr|
+          it "success response contains #{attr}" do
+            expect(response.body).to be_json_eql(
+              Direction.find(direction.id).send(attr.to_sym).to_json
+            ).at_path("direction/#{attr}")
+          end
+        end
+      end
     end
 
     context 'with invalid attributes' do
+      it 'doesn\'t update an direction' do
+        put :update, id: direction.id, direction: {}
+        direction.reload
+        expect(direction.description).to eq(direction.description)
+      end
 
+      context 'errors' do
+        before do
+          put :update, id: direction.id, direction: {}
+        end
+
+        %w(title description).each do |attr|
+          it "errors array contains #{attr}" do
+            expect(JSON.parse(response.body)['errors']).to have_key(attr)
+          end
+        end
+      end
     end
   end
 end

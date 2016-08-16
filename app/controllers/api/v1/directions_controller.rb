@@ -23,7 +23,7 @@ class Api::V1::DirectionsController < Api::ApiController
     direction = Direction.find(params[:id])
     form = Form::Direction.new(direction, params[:direction])
     if form.submit
-      render json: { direction: form.object }
+      render json: form.object, serializer: DirectionSerializer
     else
       render json: { errors: form.errors }, status: :uprocessable_entity
     end
