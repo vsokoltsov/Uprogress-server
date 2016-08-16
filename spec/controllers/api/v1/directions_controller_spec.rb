@@ -41,10 +41,51 @@ describe Api::V1::DirectionsController do
   end
 
   describe 'POST #create' do
+    context 'with valid attributes' do
+      it 'create new direction' do
+        expect do
+          post :create, direction: direction.attributes
+        end.to change(Direction, :count).by(1)
+      end
 
+      context 'response' do
+        before { post :create, direction: direction.attributes }
+
+        %w(id title description percents_result steps).each do |attr|
+          it "success response contains #{attr}" do
+            expect(response.body).to be_json_eql(Direction.last.send(attr.to_sym).to_json)
+              .at_path("direction/#{attr}")
+          end
+        end
+      end
+    end
+
+    context 'with invalid attributes' do
+      it 'doesn\'t create a new direction' do
+        expect do
+          post :create, direction: {}
+        end.to change(Direction, :count).by(0)
+      end
+    end
+
+    context 'errors' do
+      before { post :create, direction: {} }
+
+      %w(title description).each do |attr|
+        it "errors array contains #{attr}" do
+          expect(JSON.parse(response.body)['errors']).to have_key(attr)
+        end
+      end
+    end
   end
 
   describe 'PUT #update' do
+    context 'with valid attributes' do
 
+    end
+
+    context 'with invalid attributes' do
+
+    end
   end
 end
