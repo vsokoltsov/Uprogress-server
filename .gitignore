@@ -12,3 +12,4 @@
 !/log/.keep
 /tmp
 .env
+config/database.docker.sample.yml
