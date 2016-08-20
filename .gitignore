@@ -13,3 +13,4 @@
 /tmp
 .env
 config/database.docker.sample.yml
+.vagrant
