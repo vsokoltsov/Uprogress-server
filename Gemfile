@@ -13,6 +13,7 @@ gem 'tainbox'
 gem 'with_advisory_lock'
 gem 'olive_branch'
 gem 'unicorn'
+gem 'jwt'
 
 group :development, :test do
   gem 'rspec-rails'

@@ -67,6 +67,7 @@ GEM
     json_spec (1.1.4)
       multi_json (~> 1.0)
       rspec (>= 2.0, < 4.0)
+    jwt (1.5.2)
     kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -201,6 +202,7 @@ DEPENDENCIES
   faker (~> 1.6.3)
   jbuilder (~> 2.0)
   json_spec
+  jwt
   launchy
   olive_branch
   pg (~> 0.15)
