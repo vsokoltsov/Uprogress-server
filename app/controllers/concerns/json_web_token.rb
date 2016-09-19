@@ -22,8 +22,4 @@ module JsonWebToken
   def generate_token_for_auth(auth)
     JWT.encode({ id: auth.id }, jwt_secret, 'HS256')
   end
-
-  def generate_token_for_user(user)
-    JWT.encode(user.attributes, jwt_secret, 'HS256')
-  end
 end

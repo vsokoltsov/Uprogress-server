@@ -14,6 +14,7 @@ gem 'with_advisory_lock'
 gem 'olive_branch'
 gem 'unicorn'
 gem 'jwt'
+gem 'bcrypt-ruby'
 
 group :development, :test do
   gem 'rspec-rails'

@@ -56,9 +56,9 @@ ActiveRecord::Schema.define(version: 20160820220702) do
   add_index "steps", ["title"], name: "index_steps_on_title", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",      null: false
-    t.string   "password",   null: false
-    t.string   "nick",       null: false
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
+    t.string   "nick",            null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
