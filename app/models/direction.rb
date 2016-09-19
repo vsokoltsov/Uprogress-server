@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class Direction < ActiveRecord::Base
   extend FriendlyId
-
+  belongs_to :user
   has_many :steps
 
   friendly_id :slug, use: :finders
