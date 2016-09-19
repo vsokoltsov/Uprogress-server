@@ -15,6 +15,7 @@ gem 'olive_branch'
 gem 'unicorn'
 gem 'jwt'
 gem 'bcrypt-ruby'
+gem 'friendly_id', '~> 5.1.0'
 
 group :development, :test do
   gem 'rspec-rails'
