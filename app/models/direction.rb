@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 class Direction < ActiveRecord::Base
+  extend FriendlyId
+
   has_many :steps
+
+  friendly_id :nick, use: :finders
 
   def percents_result
     steps_count = steps.size
