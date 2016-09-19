@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module SessionConcern
-  TOKEN_NAME = 'uprogressyauthtoken'
+  TOKEN_NAME = 'uprogresstoken'
   LOCALE_NAME = 'locale'
 
   attr_writer :auth_token, :current_user, :current_authorization
