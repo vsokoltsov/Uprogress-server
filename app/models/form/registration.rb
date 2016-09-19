@@ -1,5 +1,6 @@
 class Form::Registration < Form::Base
   include AuthorizationConcern
+  include JsonWebToken
   attribute :email
   attribute :password
   attribute :password_confirmation
@@ -28,6 +29,7 @@ class Form::Registration < Form::Base
         true
       end
     rescue ActiveRecord::RecordNotUnique
+      binding.pry
     end
   end
 end
