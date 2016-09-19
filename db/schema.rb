@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160820220702) do
+ActiveRecord::Schema.define(version: 20160919171738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,10 +37,12 @@ ActiveRecord::Schema.define(version: 20160820220702) do
     t.text     "description", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "directions", ["description"], name: "index_directions_on_description", using: :btree
   add_index "directions", ["title"], name: "index_directions_on_title", using: :btree
+  add_index "directions", ["user_id"], name: "index_directions_on_user_id", using: :btree
 
   create_table "steps", force: :cascade do |t|
     t.integer  "direction_id",                 null: false
