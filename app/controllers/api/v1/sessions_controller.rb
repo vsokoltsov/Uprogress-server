@@ -8,4 +8,12 @@ class Api::V1::SessionsController < Api::ApiController
       render json: { errors: form.errors }, status: :unprocessable_entity
     end
   end
+
+  def current
+    if current_user
+      render json: { current_user: current_user }
+    else
+      render json: { user: nil }, status: :unauthorized
+    end
+  end
 end
