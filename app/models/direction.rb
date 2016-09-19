@@ -4,7 +4,7 @@ class Direction < ActiveRecord::Base
 
   has_many :steps
 
-  friendly_id :nick, use: :finders
+  friendly_id :slug, use: :finders
 
   def percents_result
     steps_count = steps.size
