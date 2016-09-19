@@ -182,6 +182,7 @@ GEM
       activesupport
     thor (0.19.1)
     thread_safe (0.3.5)
+    translit (0.1.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     unicode-display_width (1.0.5)
@@ -222,6 +223,7 @@ DEPENDENCIES
   shoulda-matchers
   spring
   tainbox
+  translit
   unicorn
   web-console (~> 2.0)
   with_advisory_lock

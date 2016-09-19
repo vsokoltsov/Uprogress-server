@@ -1,4 +1,6 @@
 class Form::Registration < Form::Base
+  include EmailValidation
+  include PasswordValidation
   include AuthorizationConcern
   include JsonWebToken
   attribute :email
@@ -7,6 +9,9 @@ class Form::Registration < Form::Base
   attribute :nick
 
   attr_accessor :token, :authorization
+
+  validates :nick, presence: true
+  validate :nick_length
 
   def attributes=(attrs)
     super(attrs)
@@ -18,7 +23,8 @@ class Form::Registration < Form::Base
   end
 
   def nick=(attr)
-    super(attr.downcase.strip)
+    translated = Translit.convert(attr.downcase.strip, :english)
+    super(translated)
   end
 
   def submit
@@ -30,6 +36,16 @@ class Form::Registration < Form::Base
       end
     rescue ActiveRecord::RecordNotUnique
       binding.pry
+    end
+  end
+
+  private
+
+  def nick_length
+    nick_size = nick.scan(/\w+/).size
+    if nick_size > 1
+      erros.add(:nick, 'Maximum one word')
+      false
     end
   end
 end

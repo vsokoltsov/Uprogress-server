@@ -16,6 +16,7 @@ gem 'unicorn'
 gem 'jwt'
 gem 'bcrypt-ruby'
 gem 'friendly_id', '~> 5.1.0'
+gem 'translit'
 
 group :development, :test do
   gem 'rspec-rails'
