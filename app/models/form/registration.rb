@@ -23,7 +23,8 @@ class Form::Registration < Form::Base
   end
 
   def nick=(attr)
-    translated = Translit.convert(attr.downcase.strip, :english)
+    nick_value = attr.downcase.strip.gsub(/\.|-/, '_')
+    translated = Translit.convert(nick_value, :english)
     super(translated)
   end
 
