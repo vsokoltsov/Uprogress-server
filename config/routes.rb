@@ -6,8 +6,10 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create, :destroy] do
         get :current, on: :collection
       end
-      resources :directions do
-        resources :steps
+      resources :users do
+        resources :directions do
+          resources :steps
+        end
       end
     end
   end

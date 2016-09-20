@@ -2,6 +2,7 @@
 class Api::ApiController < ApplicationController
   include JsonWebToken
   include SessionConcern
+  include UserConcern
 
   rescue_from Api::Error do |e|
     error_response e, e.status, e.addition

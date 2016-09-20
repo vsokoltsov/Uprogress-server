@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 class Api::V1::DirectionsController < Api::ApiController
+  before_action :find_user
   def index
-    directions = Direction.all
+    directions = @user.directions
     render json: directions, each_serializer: DirectionsSerializer
   end
 
   def create
-    form = Form::Direction.new(Direction.new, params[:direction])
+    form = Form::Direction.new(current_user.directions.build, params[:direction])
     if form.submit
       render json: form.object, serializer: DirectionSerializer
     else
@@ -15,7 +16,7 @@ class Api::V1::DirectionsController < Api::ApiController
   end
 
   def show
-    direction = Direction.find(params[:id])
+    direction = @user.directions.find(params[:id])
     render json: direction, serializer: DirectionSerializer
   end
 
