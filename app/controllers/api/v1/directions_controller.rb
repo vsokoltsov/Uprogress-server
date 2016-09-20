@@ -10,7 +10,7 @@ class Api::V1::DirectionsController < Api::ApiController
     if form.submit
       render json: form.object, serializer: DirectionSerializer
     else
-      render json: { errors: form.errors }, status: :uprocessable_entity
+      render json: { errors: form.errors }, status: :unprocessable_entity
     end
   end
 
@@ -25,7 +25,7 @@ class Api::V1::DirectionsController < Api::ApiController
     if form.submit
       render json: form.object, serializer: DirectionSerializer
     else
-      render json: { errors: form.errors }, status: :uprocessable_entity
+      render json: { errors: form.errors }, status: :unprocessable_entity
     end
   end
 end
