@@ -21,7 +21,7 @@ class Api::V1::DirectionsController < Api::ApiController
   end
 
   def update
-    direction = Direction.find(params[:id])
+    direction = current_user.directions.find(params[:id])
     form = Form::Direction.new(direction, params[:direction])
     if form.submit
       render json: form.object, serializer: DirectionSerializer
