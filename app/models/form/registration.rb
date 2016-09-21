@@ -35,8 +35,11 @@ class Form::Registration < Form::Base
         @token = generate_token_for_auth(auth)
         true
       end
-    rescue ActiveRecord::RecordNotUnique
-      binding.pry
+    rescue ActiveRecord::RecordNotUnique => e
+      %w(email nick).each do |attr|
+        errors.add(attr.to_sym, " #{attr} already taken") if e.message.match /Key \(#{attr}\)/
+      end
+      false
     end
   end
 
