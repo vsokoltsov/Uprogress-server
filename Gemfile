@@ -17,6 +17,8 @@ gem 'jwt'
 gem 'bcrypt-ruby'
 gem 'friendly_id', '~> 5.1.0'
 gem 'translit'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'rspec-rails'

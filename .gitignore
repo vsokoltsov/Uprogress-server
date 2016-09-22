@@ -14,3 +14,4 @@
 .env
 config/database.docker.sample.yml
 .vagrant
+config/local_env.yml

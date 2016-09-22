@@ -47,6 +47,12 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
+    carrierwave (0.11.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+      mimemagic (>= 0.3.0)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
     database_cleaner (1.0.1)
@@ -84,6 +90,8 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mimemagic (0.3.2)
+    mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
@@ -204,6 +212,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   bcrypt-ruby
+  carrierwave
   database_cleaner (~> 1.0.1)
   factory_girl_rails
   faker (~> 1.6.3)
@@ -212,6 +221,7 @@ DEPENDENCIES
   json_spec
   jwt
   launchy
+  mini_magick
   olive_branch
   pg (~> 0.15)
   pry-rails
