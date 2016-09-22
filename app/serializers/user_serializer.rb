@@ -4,4 +4,5 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :nick
 
   has_many :directions, serializer: DirectionsSerializer
+  has_one :attachment, serializer: AttachmentSerializer
 end

@@ -4,4 +4,14 @@ class Api::V1::UsersController < Api::ApiController
     user = User.find(params[:id])
     render json: user, serializer: UserSerializer
   end
+
+  def update
+    user = User.find(params[:id])
+    form = Form::User.new(user, params[:user])
+    if form.submit
+      render json: user, serializer: CurrentUserSerializer
+    else
+      render json: { errors: form.errors }, status: :unprocessable_entity
+    end
+  end
 end

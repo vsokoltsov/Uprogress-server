@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+class CurrentUserSerializer < ActiveModel::Serializer
+  root 'current_user'
+
+  attributes :id, :email, :nick
+
+  has_one :attachment, serializer: AttachmentSerializer
+end
