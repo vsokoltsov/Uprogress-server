@@ -10,12 +10,12 @@ class UserSerializer < ActiveModel::Serializer
   def finished_directions
     scope.directions.select do |attr|
       attr.steps.map(&:is_done).uniq.length == 1
-    end
+    end.first(5)
   end
 
   def new_directions
     scope.directions.select do |attr|
       attr.steps.blank?
-    end
+    end.first(5)
   end
 end
