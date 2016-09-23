@@ -6,6 +6,7 @@ module JsonWebToken
 
   def validate_token
     current_authorization = Authorization.find_by_jwt_token(auth_token)
+    store_current_user
     raise ActiveRecord::RecordNotFound if current_authorization.blank?
   rescue ActiveRecord::RecordNotFound
     raise Api::Error.new(USER_NOT_FOUND, 401)
@@ -21,5 +22,11 @@ module JsonWebToken
 
   def generate_token_for_auth(auth)
     JWT.encode({ id: auth.id }, jwt_secret, 'HS256')
+  end
+
+  def store_current_user
+    if SessionConcern::LOGGED_REQUESTS.include?(request.method)
+      RequestStore.store[:current_user] = current_user
+    end
   end
 end

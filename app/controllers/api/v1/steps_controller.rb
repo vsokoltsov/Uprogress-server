@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class Api::V1::StepsController < Api::ApiController
+  before_action :validate_token
 
   def create
     direction = Direction.find(params[:direction_id])

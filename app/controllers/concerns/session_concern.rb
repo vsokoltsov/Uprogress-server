@@ -2,6 +2,7 @@
 module SessionConcern
   TOKEN_NAME = 'uprogresstoken'
   LOCALE_NAME = 'locale'
+  LOGGED_REQUESTS = %w(POST PUT DELETE).freeze
 
   attr_writer :auth_token, :current_user, :current_authorization
 
@@ -14,7 +15,7 @@ module SessionConcern
   end
 
   def current_user
-    current_authorization.try(:user)
+    @current_user ||= current_authorization.try(:user)
   end
 
   def current_authorization

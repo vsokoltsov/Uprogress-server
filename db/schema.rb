@@ -70,14 +70,15 @@ ActiveRecord::Schema.define(version: 20160923132025) do
   add_index "steps", ["title"], name: "index_steps_on_title", using: :btree
 
   create_table "system_logs", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "operation"
-    t.jsonb    "data",       default: {}
+    t.integer  "user_id",                 null: false
+    t.string   "operation",               null: false
+    t.jsonb    "data",       default: {}, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "system_logs", ["data"], name: "index_system_logs_on_data", using: :gin
+  add_index "system_logs", ["operation"], name: "index_system_logs_on_operation", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false

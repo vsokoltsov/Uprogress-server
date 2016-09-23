@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 class Api::V1::DirectionsController < Api::ApiController
   before_action :find_user
+  before_action :validate_token, except: [:index, :show]
+
   def index
     directions = @user.directions
     render json: directions, each_serializer: DirectionsSerializer
