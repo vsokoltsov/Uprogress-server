@@ -20,6 +20,7 @@ gem 'translit'
 gem 'carrierwave'
 gem 'carrierwave-aws'
 gem 'mini_magick'
+gem 'request_store'
 
 group :development, :test do
   gem 'rspec-rails'
