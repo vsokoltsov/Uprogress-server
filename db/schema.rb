@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923124928) do
+ActiveRecord::Schema.define(version: 20160923132025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,16 @@ ActiveRecord::Schema.define(version: 20160923124928) do
   add_index "steps", ["direction_id"], name: "index_steps_on_direction_id", using: :btree
   add_index "steps", ["is_done"], name: "index_steps_on_is_done", using: :btree
   add_index "steps", ["title"], name: "index_steps_on_title", using: :btree
+
+  create_table "system_logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "operation"
+    t.jsonb    "data",       default: {}
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "system_logs", ["data"], name: "index_system_logs_on_data", using: :gin
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false
