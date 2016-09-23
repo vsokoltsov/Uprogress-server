@@ -4,6 +4,7 @@ class Form::User < Form::Base
   attribute :first_name
   attribute :last_name
   attribute :description
+  attribute :location
 
   def attachment=(image)
     super(Attachment.find_by(id: image["id"], attachable_type: @object.class.to_s))

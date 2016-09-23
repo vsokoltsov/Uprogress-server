@@ -2,7 +2,7 @@
 class CurrentUserSerializer < ActiveModel::Serializer
   root 'current_user'
 
-  attributes :id, :email, :nick, :first_name, :last_name, :description
+  attributes :id, :email, :nick, :first_name, :last_name, :description, :location
 
   has_one :attachment, serializer: AttachmentSerializer
 end
