@@ -12,6 +12,6 @@
 !/log/.keep
 /tmp
 .env
-config/database.docker.sample.yml
+config/database.yml
 .vagrant
 config/local_env.yml
