@@ -8,14 +8,14 @@ class UserSerializer < ActiveModel::Serializer
   has_one :attachment, serializer: AttachmentSerializer
 
   def finished_directions
-    scope.directions.select do |attr|
+    object.directions.select do |attr|
       steps_status = attr.steps.map(&:is_done)
       steps_status.uniq.length == 1 && steps_status.first
     end.first(5)
   end
 
   def new_directions
-    scope.directions.select do |attr|
+    object.directions.select do |attr|
       attr.steps.blank?
     end.first(5)
   end

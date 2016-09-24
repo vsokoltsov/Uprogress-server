@@ -9,8 +9,8 @@ class Form::Base
 
   def initialize(object, params = nil)
     @object = object
-    @operation = object.persisted? ? 'update' : 'create'
-    @prev_attributes = object.attributes
+    @operation = object&.persisted? ? 'update' : 'create'
+    @prev_attributes = object&.attributes
     self.attributes = params || @object.attributes
   end
 

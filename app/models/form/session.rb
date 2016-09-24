@@ -24,7 +24,7 @@ class Form::Session < Form::Base
       auth = build_authorizaiton(authorization, @user)
       @token = generate_token_for_auth(auth)
     else
-      errors.add(:email, I18n.t('user.errors.user_doesnt_exist'))
+      errors.add(:email, "User doesn't exist")
       false
     end
   end
