@@ -1,7 +1,7 @@
 ## Setup and run
 
 First of all, pleas make sure, that you install docker fully and properly (`docker-machine`,
-  `docker-compose`, `kinematic`, `boot2docker` and all that stuff. See (official guide)[https://docs.docker.com/toolbox/toolbox_install_mac/])
+  `docker-compose`, `kinematic`, `boot2docker` and all that stuff. See [official guide](https://docs.docker.com/toolbox/toolbox_install_mac/)
 
 For installing `docker` environment use command `docker-compose build`
 
