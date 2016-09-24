@@ -1,4 +1,8 @@
 ## Setup and run
+
+First of all, pleas make sure, that you install docker fully and properly (`docker-machine`,
+  `docker-compose`, `kinematic`, `boot2docker` and all that stuff. See (official guide)[https://docs.docker.com/toolbox/toolbox_install_mac/])
+
 For installing `docker` environment use command `docker-compose build`
 
 Then you need to create database and run migrations
@@ -7,6 +11,8 @@ Then you need to create database and run migrations
 
 After that, you can run server with
 `docker-compose run --service-ports app` (in development, with support of debug and code reload)
+
+You may want to add an `alias dc="docker-compose run app"` for quick access to rails ecosystem commands
 
 ## Specs
 
