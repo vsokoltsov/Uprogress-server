@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+
+development:
+  <<: *default
+  database: uprogress_development
+
+test:
+  <<: *default
+  database: uprogress_test
+
+production:
+  <<: *default
+  database: uprogress_production
