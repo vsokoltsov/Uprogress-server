@@ -12,7 +12,8 @@ Then you need to create database and run migrations
 After that, you can run server with
 `docker-compose run --service-ports app` (in development, with support of debug and code reload)
 
-You may want to add an `alias dc="docker-compose run app"` for quick access to rails ecosystem commands
+You may want to add an `alias dc="docker-compose run app"` for quick access to rails ecosystem commands.
+Or add `192.168.99.100` to `/etc/hosts` with `dockerhost` or something
 
 ## Specs
 
