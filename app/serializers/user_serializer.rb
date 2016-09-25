@@ -32,8 +32,8 @@ class UserSerializer < ActiveModel::Serializer
 
   def sorted_logs(object)
     object.system_logs
+          .order(created_at: :desc)
           .limit(5)
-          .order(created_at: :asc)
           .sort do |a, b|
             b.created_at <=> a.created_at
           end
