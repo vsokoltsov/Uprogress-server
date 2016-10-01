@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class StatisticsSerializer < ActiveModel::Serializer
   root 'statistics'
-  attributes :directions
+  attributes :directions, :steps
 
   def directions
     directions_count = object.directions.size.to_f
@@ -13,5 +13,12 @@ class StatisticsSerializer < ActiveModel::Serializer
       { label: 'New directions', value: new_directions.to_f, color: '#DC3912' },
       { label: 'Finished directions', value: finished_directions.to_f, color: '#FF9900' }
     ]
+  end
+
+  def steps
+    steps_list_for_directions = object.directions.map(&:steps).flatten
+    steps_list_for_directions.group_by(&:is_done).each do |item|
+      binding.pry
+    end
   end
 end
