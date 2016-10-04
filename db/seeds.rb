@@ -12,6 +12,13 @@
   img.save
 end
 
+user = User.create!(first_name: 'Vadim',
+                    last_name: 'Sokoltsov',
+                    nick: 'vforvad',
+                    password: 'Altair_69',
+                    password_confirmation: 'Altair_69',
+                    email: 'vforvad@gmail.com')
+
 # create courses for each user
 User.all.each do |user|
   15.times do

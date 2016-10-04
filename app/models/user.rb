@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   def in_progress_directions
     directions.select do |item|
       steps_status = item.steps.map(&:is_done)
-      steps_status.uniq.size >= 1 || !steps_status.first.nil?
+      steps_status.uniq.size > 1 || !steps_status.first.nil?
     end
   end
 end
