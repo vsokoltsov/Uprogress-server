@@ -21,7 +21,17 @@ class StatisticsSerializer < ActiveModel::Serializer
 
   def steps
     steps_list_for_directions = object.directions.map(&:steps).flatten
-    steps_list_for_directions.group_by(&:is_done).each do |item|
+    steps_list_for_directions.group_by(&:is_done).map do |item|
+      case item.first
+      when true
+        hash = { label: 'Finished', color: '#3366CC' }
+      when false
+        hash = { label: 'Cancelled', color: '#DC3912' }
+      when nil
+        hash = { label: 'In progress', color: '#FF9900' }
+      end
+      hash[:value] = ((item.last.size / steps_list_for_directions.size.to_f) * 100).round(2)
+      hash
     end
   end
 end

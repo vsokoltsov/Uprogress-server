@@ -2,10 +2,10 @@
 class User < ActiveRecord::Base
   extend FriendlyId
 
-  has_many :authorization
-  has_many :directions
+  has_many :authorization, dependent: :destroy
+  has_many :directions, dependent: :destroy
   has_one :attachment, as: :attachable, dependent: :destroy
-  has_many :system_logs
+  has_many :system_logs, dependent: :destroy
 
   has_secure_password
 
