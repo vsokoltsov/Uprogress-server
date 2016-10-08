@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       end
       resources :attachments, only: [:create]
       resources :users do
+        get :statistics, on: :member
+
         resources :directions do
           resources :steps
         end

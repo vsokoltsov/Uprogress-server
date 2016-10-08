@@ -21,9 +21,21 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def recent_actions
-    logs = object.system_logs.limit(5).group_by do |item|
+    logs = sorted_logs(object).group_by do |item|
       item.created_at.to_date
     end
+
     Hash[*logs.flatten]
+  end
+
+  private
+
+  def sorted_logs(object)
+    object.system_logs
+          .order(created_at: :desc)
+          .limit(5)
+          .sort do |a, b|
+            b.created_at <=> a.created_at
+          end
   end
 end

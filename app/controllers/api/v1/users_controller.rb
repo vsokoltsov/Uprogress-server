@@ -14,4 +14,9 @@ class Api::V1::UsersController < Api::ApiController
       render json: { errors: form.errors }, status: :unprocessable_entity
     end
   end
+
+  def statistics
+    user = User.find(params[:id])
+    render json: user, serializer: StatisticsSerializer
+  end
 end

@@ -1,4 +1,4 @@
-## Setup and run
+## Setup
 
 First of all, pleas make sure, that you install docker fully and properly (`docker-machine`,
   `docker-compose`, `kinematic`, `boot2docker` and all that stuff. See [official guide](https://docs.docker.com/toolbox/toolbox_install_mac/)
@@ -13,7 +13,22 @@ After that, you can run server with
 `docker-compose run --service-ports app` (in development, with support of debug and code reload)
 
 You may want to add an `alias dc="docker-compose run app"` for quick access to rails ecosystem commands.
-Or add `192.168.99.100` to `/etc/hosts` with `dockerhost` or something
+Or add `docker-machine ip` value to `/etc/hosts` with `dockerhost` or something
+
+## Run
+
+For proper running you should do this steps (after installing other stuff)
+
+# Boot2Docker
+
+* install boot2docker via brew (`brew install boot2docker`)
+* init virtual machine (`boot2docker init`)
+* run virtual machin (`boot2docker up`)
+* connect to docker daeon (`eval "$(boot2docker shellinit)"`)
+
+# Docker-machine
+
+You can see guide [here](https://docs.docker.com/machine/get-started/)
 
 ## Specs
 
