@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class StatisticsSerializer < ActiveModel::Serializer
   root 'statistics'
-  attributes :directions, :steps
+  attributes :directions, :steps, :directions_steps
 
   def directions
     directions_count = object.directions.size.to_f
@@ -32,6 +32,18 @@ class StatisticsSerializer < ActiveModel::Serializer
       end
       hash[:value] = ((item.last.size / steps_list_for_directions.size.to_f) * 100).round(2)
       hash
+    end
+  end
+
+  def directions_steps
+    directions_steps_size = object.directions.map(&:steps).flatten.size
+    directions = object.directions
+    directions.map do |item|
+      {
+        label: item.title,
+        color: Faker::Color.hex_color,
+        value: ((item.steps.size / directions_steps_size.to_f) * 100).round(2)
+      }
     end
   end
 end
