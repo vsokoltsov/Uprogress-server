@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/vforvad/Uprogress-server.svg?branch=master)](https://travis-ci.org/vforvad/Uprogress-server)
+
 ## Setup
 
 First of all, pleas make sure, that you install docker fully and properly (`docker-machine`,
