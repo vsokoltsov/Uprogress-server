@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class StatisticsSerializer < ActiveModel::Serializer
   root 'statistics'
-  attributes :directions, :steps
+  attributes :directions, :steps, :directions_steps
 
   def directions
     directions_count = object.directions.size.to_f
