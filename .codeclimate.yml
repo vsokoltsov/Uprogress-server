@@ -10,7 +10,7 @@ engines:
       - ruby
 ratings:
   paths:
-  - app/**
-  - "**.rb"
+    - app/**
+    - "**.rb"
 exclude_paths:
-- "**/vendor/**/*"
+  - "**/vendor/**/*"
