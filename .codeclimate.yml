@@ -14,9 +14,9 @@ engines:
     enabled: true
 ratings:
   paths:
-    - Gemfile.lock
     - app/**
     - "**.rb"
 exclude_paths:
+  - Gemfile.lock
   - db/
   - "**/vendor/**/*"
