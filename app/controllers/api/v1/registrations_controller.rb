@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class Api::V1::RegistrationsController < Api::ApiController
   def create
-    form = Form::Registration.new(User.new, params[:user])
+    form = Form::Registration.new(User.new, params[:user].permit!)
     if form.submit
       render json: { token: form.token }
     else

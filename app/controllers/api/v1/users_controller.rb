@@ -7,7 +7,7 @@ class Api::V1::UsersController < Api::ApiController
 
   def update
     user = User.find(params[:id])
-    form = Form::User.new(user, params[:user])
+    form = Form::User.new(user, params[:user].permit!)
     if form.submit
       render json: user, serializer: CurrentUserSerializer
     else
