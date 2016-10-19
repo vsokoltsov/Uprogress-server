@@ -1,0 +1,24 @@
+engines:
+  rubocop:
+    enabled: true
+  brakeman:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+  bundler-audit:
+    enabled: true
+  fixme:
+    enabled: true
+ratings:
+  paths:
+    - app/**
+    - "**.rb"
+exclude_paths:
+  - Gemfile.lock
+  - spec
+  - config
+  - db/
+  - "**/vendor/**/*"

@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/vforvad/Uprogress-server.svg?branch=master)](https://travis-ci.org/vforvad/Uprogress-server)
+[![Code Climate](https://codeclimate.com/github/vforvad/Uprogress-server/badges/gpa.svg)](https://codeclimate.com/github/vforvad/Uprogress-server)
+[![Issue Count](https://codeclimate.com/github/vforvad/Uprogress-server/badges/issue_count.svg)](https://codeclimate.com/github/vforvad/Uprogress-server)
 
 ## Setup
 
