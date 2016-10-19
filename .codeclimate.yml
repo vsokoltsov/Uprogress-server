@@ -8,9 +8,15 @@ engines:
     config:
       languages:
       - ruby
+  bundler-audit:
+    enabled: true
+  fixme:
+    enabled: true
 ratings:
   paths:
+    - Gemfile.lock
     - app/**
     - "**.rb"
 exclude_paths:
+  - db/
   - "**/vendor/**/*"
