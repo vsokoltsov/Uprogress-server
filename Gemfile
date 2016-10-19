@@ -9,7 +9,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'active_model_serializers', '0.9.5'
 gem 'rack-cors', require: 'rack/cors'
 gem 'pry-rails'
-gem 'tainbox'
+gem 'tainbox', '1.0.0'
 gem 'with_advisory_lock'
 gem 'olive_branch'
 gem 'unicorn'

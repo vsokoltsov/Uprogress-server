@@ -196,7 +196,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    tainbox (2.0.0)
+    tainbox (1.0.0)
       activesupport
     thor (0.19.1)
     thread_safe (0.3.5)
@@ -244,7 +244,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   shoulda-matchers
   spring
-  tainbox
+  tainbox (= 1.0.0)
   translit
   unicorn
   web-console (~> 2.0)
