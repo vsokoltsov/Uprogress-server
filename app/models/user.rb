@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  friendly_id :nick, use: :finders
+  friendly_id :nick, use: [:finders]
 
   def finished_directions
     directions.select do |attr|
