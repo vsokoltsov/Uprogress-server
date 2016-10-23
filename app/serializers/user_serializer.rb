@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 class UserSerializer < ActiveModel::Serializer
-  root 'user'
   attributes :id, :nick, :first_name, :last_name, :description, :location,
              :finished_directions, :new_directions, :recent_actions
 
@@ -26,6 +25,10 @@ class UserSerializer < ActiveModel::Serializer
     end
 
     Hash[*logs.flatten]
+  end
+
+  def json_key
+    'user'
   end
 
   private

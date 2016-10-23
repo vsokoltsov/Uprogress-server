@@ -9,7 +9,10 @@ class Api::V1::DirectionsController < Api::ApiController
   end
 
   def create
-    form = Form::Direction.new(current_user.directions.build, params[:direction])
+    form = Form::Direction.new(
+      current_user.directions.build,
+      params[:direction].to_unsafe_hash
+    )
     if form.submit
       render json: form.object, serializer: DirectionSerializer
     else
@@ -24,7 +27,7 @@ class Api::V1::DirectionsController < Api::ApiController
 
   def update
     direction = current_user.directions.find(params[:id])
-    form = Form::Direction.new(direction, params[:direction])
+    form = Form::Direction.new(direction, params[:direction].to_unsafe_hash)
     if form.submit
       render json: form.object, serializer: DirectionSerializer
     else

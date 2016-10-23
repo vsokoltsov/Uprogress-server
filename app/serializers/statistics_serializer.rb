@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class StatisticsSerializer < ActiveModel::Serializer
-  root 'statistics'
+  # root 'statistics'
   attributes :directions, :steps, :directions_steps
 
   def directions
@@ -45,5 +45,9 @@ class StatisticsSerializer < ActiveModel::Serializer
         value: ((item.steps.size / directions_steps_size.to_f) * 100).round(2)
       }
     end
+  end
+
+  def json_key
+    'statistics'
   end
 end

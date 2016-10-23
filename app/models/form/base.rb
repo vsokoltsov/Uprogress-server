@@ -11,7 +11,7 @@ class Form::Base
     @object = object
     @operation = object&.persisted? ? 'update' : 'create'
     @prev_attributes = object&.attributes
-    self.attributes = params.permit!&.to_h || @object.attributes
+    self.attributes = params || @object.attributes
   end
 
   def to_model

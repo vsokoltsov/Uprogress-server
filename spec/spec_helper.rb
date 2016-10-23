@@ -2,7 +2,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
+require 'json_spec'
+require 'database_cleaner'
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
