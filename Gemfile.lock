@@ -244,7 +244,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.0)
   rack-cors
-  rails (= 5.0.0.0)
+  rails (= 5.0.0)
   request_store
   rspec-rails
   rubocop
