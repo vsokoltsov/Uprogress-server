@@ -20,7 +20,7 @@ Bundler.require(*Rails.groups)
 module UprogressServer
   class Application < Rails::Application
     config.api_only = true
-    config.web_console.whitelisted_ips = '192.168.99.1'
+    config.console.whitelisted_ips = '192.168.99.1'
 
     config.middleware.use 'OliveBranch::Middleware'
 
