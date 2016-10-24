@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class DirectionSerializer < ActiveModel::Serializer
-  root 'direction'
+  # root 'direction'
   attributes :id, :title, :description, :percents_result
 
   delegate :percents_result, to: :object
@@ -9,5 +9,9 @@ class DirectionSerializer < ActiveModel::Serializer
 
   def steps
     object.steps.order(:created_at)
+  end
+
+  def json_key
+    'direction'
   end
 end

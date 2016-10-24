@@ -6,6 +6,8 @@ describe Api::V1::StepsController do
   let!(:direction) { create :direction, user_id: auth.user.id }
   let!(:step) { create :step, direction_id: direction.id }
 
+  before { request.env['CONTENT_TYPE'] = 'application/json' }
+
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'create a new step' do

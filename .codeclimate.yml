@@ -3,6 +3,8 @@ engines:
     enabled: true
   brakeman:
     enabled: true
+    exclude_fingerprints:
+    - 1a1b3368951a20d02976c9207e5981df37d1bfa7dbbdb925eecd9013ecfeaa0f
   duplication:
     enabled: true
     config:
@@ -17,8 +19,8 @@ ratings:
     - app/**
     - "**.rb"
 exclude_paths:
-  - Gemfile.lock
-  - spec
-  - config
-  - db/
-  - "**/vendor/**/*"
+- 'Gemfile.lock'
+- 'spec'
+- 'config'
+- 'db/'
+- "**/vendor/**/*"

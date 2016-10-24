@@ -5,6 +5,8 @@ describe Api::V1::DirectionsController do
   let!(:auth) { create :authorization }
   let!(:direction) { create :direction, user_id: auth.user.id }
 
+  before { request.env['CONTENT_TYPE'] = 'application/json' }
+
   describe 'GET #index' do
     it 'show list of directions' do
       get :index, user_id: auth.user.id
@@ -94,7 +96,7 @@ describe Api::V1::DirectionsController do
       it 'update an direction' do
         put_with_token auth, :update, user_id: auth.user.id,
                                       id: direction.id,
-                                      direction: direction_attributes(direction)
+                                      direction: direction_attributes(direction), format: :json
         direction.reload
         expect(direction.description).to eq('aaa')
       end
