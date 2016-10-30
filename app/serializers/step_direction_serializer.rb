@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class DirectionSerializer < ActiveModel::Serializer
+class StepDirectionSerializer < ActiveModel::Serializer
   attributes :id, :title, :description, :percents_result
 
   delegate :percents_result, to: :object

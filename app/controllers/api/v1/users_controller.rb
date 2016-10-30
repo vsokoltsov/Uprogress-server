@@ -16,7 +16,7 @@ class Api::V1::UsersController < Api::ApiController
   end
 
   def statistics
-    user = User.find(params[:id])
+    user = User.friendly.find(params[:id])
     render json: user, serializer: StatisticsSerializer
   end
 end
