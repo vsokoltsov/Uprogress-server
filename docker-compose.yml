@@ -1,21 +1,27 @@
-app:
-  tty: true
-  stdin_open: true
-  build: .
-  environment:
-    RAILS_ENV: $RAILS_ENV
+version: '2'
+services:
+  app:
+    image: vsokoltsov/uprogress
+    build: .
+    command: bash -l -c './bin/rails server -p 3000 -b 0.0.0.0'
+    environment:
+      RAILS_ENV: $RAILS_ENV
+      SECRET_KEY_BASE: $SECRET_KEY_BASE
+      JWT_SECRET: $JWT_SECRET
 
-  links:
-    - db
-  volumes:
-    - './:/var/www/docker_example'
+    links:
+      - db
+    volumes:
+      - './:/var/www/docker_example'
 
-  ports:
-    - "3000:3000"
+    ports:
+      - "80:3000"
 
-db:
-  image: postgres:9.4.5
-  ports:
-    - "5432"
-  volumes:
-    - docker-example-postgres:/var/lib/postgresql/data
+  db:
+    image: postgres:9.4.5
+    ports:
+      - "5432"
+    volumes:
+      - postgres:/var/lib/postgres
+volumes:
+  postgres:
