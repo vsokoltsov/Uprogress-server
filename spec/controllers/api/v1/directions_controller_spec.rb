@@ -9,12 +9,12 @@ describe Api::V1::DirectionsController do
 
   describe 'GET #index' do
     it 'show list of directions' do
-      get :index, user_id: auth.user.id
+      get :index, params: { user_id: auth.user.id }
       expect(JSON.parse(response.body)).to have_key('directions')
     end
 
     context 'response' do
-      before { get :index, user_id: auth.user.id }
+      before { get :index, params: { user_id: auth.user.id } }
 
       %w(id title description percents_result).each do |attr|
         it "success response contains #{attr}" do
@@ -27,12 +27,12 @@ describe Api::V1::DirectionsController do
 
   describe 'GET #show' do
     it 'show particular direction' do
-      get :show, user_id: auth.user.id, id: direction
+      get :show, params: { user_id: auth.user.id, id: direction }
       expect(JSON.parse(response.body)).to have_key('direction')
     end
 
     context 'response' do
-      before { get :show, user_id: auth.user.id, id: direction }
+      before { get :show, params: { user_id: auth.user.id, id: direction } }
 
       %w(id title description percents_result steps).each do |attr|
         it "success response contains #{attr}" do
