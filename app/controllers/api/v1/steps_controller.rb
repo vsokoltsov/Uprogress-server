@@ -6,7 +6,7 @@ class Api::V1::StepsController < Api::ApiController
     direction = Direction.find(params[:direction_id])
     form = Form::Step.new(direction.steps.build, params[:step].to_unsafe_hash)
     if form.submit
-      render json: form.object, serializer: UpdatedStepSerializer
+      render json: form.object, serializer: StepSerializer
     else
       render json: { errors: form.errors }, status: :unprocessable_entity
     end
@@ -16,7 +16,7 @@ class Api::V1::StepsController < Api::ApiController
     step = Step.find(params[:id])
     form = Form::Step.new(step, params[:step].to_unsafe_hash)
     if form.submit
-      render json: form.object, serializer: UpdatedStepSerializer
+      render json: form.object, serializer: StepSerializer
     else
       render json: { errors: form.errors }, status: :unprocessable_entity
     end
@@ -24,6 +24,6 @@ class Api::V1::StepsController < Api::ApiController
 
   def destroy
     step = Step.find(params[:id])
-    render json: step, serializer: UpdatedStepSerializer if step.destroy
+    render json: step, serializer: StepSerializer if step.destroy
   end
 end

@@ -7,16 +7,16 @@ class UserSerializer < ActiveModel::Serializer
   has_one :attachment, serializer: AttachmentSerializer
 
   def finished_directions
-    object.directions.select do |attr|
+    Direction.joins(:steps).where(user_id: object.id).select do |attr|
       steps_status = attr.steps.map(&:is_done)
-      steps_status.uniq.length == 1 && steps_status.first
+      steps_status.uniq.size == 1 && steps_status.first
     end.first(5)
   end
 
   def new_directions
-    object.directions.select do |attr|
-      attr.steps.blank?
-    end.first(5)
+    Direction.joins(:steps).where(user_id: object.id)
+             .group('directions.id, steps.id').having('COUNT(steps) > 0')
+             .uniq.limit(5)
   end
 
   def recent_actions
@@ -25,6 +25,10 @@ class UserSerializer < ActiveModel::Serializer
     end
 
     Hash[*logs.flatten]
+  end
+
+  def directions
+    Direction.where(user_id: object.id)
   end
 
   def json_key

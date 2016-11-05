@@ -7,8 +7,8 @@ class Direction < ActiveRecord::Base
   friendly_id :slug, use: :finders
 
   def percents_result
-    steps_count = steps.size
-    completed_steps = steps.completed.size
-    (completed_steps / steps_count.to_f * 100).to_i if steps.present?
+    steps_list = steps.to_a
+    completed_steps = steps.select(&:is_done)
+    (completed_steps.size / steps_list.size.to_f * 100).to_i if steps_list.present?
   end
 end
