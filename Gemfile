@@ -22,12 +22,12 @@ gem 'carrierwave-aws'
 gem 'mini_magick'
 gem 'request_store'
 gem 'puma', '~> 3.0'
+gem 'faker', '~> 1.6.3'
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
-  gem 'faker', '~> 1.6.3'
 end
 
 group :development do

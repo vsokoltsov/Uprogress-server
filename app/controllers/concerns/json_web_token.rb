@@ -5,7 +5,7 @@ module JsonWebToken
   TOKEN_EXPIRED = 'Authorization token expired'
 
   def validate_token
-    current_authorization = Authorization.find_by_jwt_token(auth_token)
+    current_authorization = Authorization.decode_jwt_and_find(auth_token)
     store_current_user
     raise ActiveRecord::RecordNotFound if current_authorization.blank?
   rescue ActiveRecord::RecordNotFound
@@ -25,8 +25,7 @@ module JsonWebToken
   end
 
   def store_current_user
-    if SessionConcern::LOGGED_REQUESTS.include?(request.method)
-      RequestStore.store[:current_user] = current_user
-    end
+    return unless SessionConcern::LOGGED_REQUESTS.include?(request.method)
+    RequestStore.store[:current_user] = current_user
   end
 end

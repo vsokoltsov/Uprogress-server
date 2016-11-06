@@ -6,21 +6,21 @@ module RequestHelper
 
   def get_with_token(auth, path, params = {}, headers = {})
     request.headers[SessionConcern::TOKEN_NAME] = retrieve_access_token(auth)
-    get path, params, headers
+    get path, params: params, headers: headers
   end
 
   def post_with_token(auth, path, params = {}, headers = {})
     request.headers[SessionConcern::TOKEN_NAME] = retrieve_access_token(auth)
-    post path, params, headers
+    post path, params: params, headers: headers
   end
 
   def delete_with_token(auth, path, params = {}, headers = {})
     request.headers[SessionConcern::TOKEN_NAME] = retrieve_access_token(auth)
-    delete path, params, headers
+    delete path, params: params, headers: headers
   end
 
   def put_with_token(auth, path, params = {}, headers = {})
     request.headers[SessionConcern::TOKEN_NAME] = retrieve_access_token(auth)
-    put path, params, headers
+    put path, params: params, headers: headers
   end
 end
