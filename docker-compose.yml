@@ -11,8 +11,6 @@ services:
 
     links:
       - db
-    volumes:
-      - './:/var/www/docker_example'
 
     ports:
       - "80:3000"
