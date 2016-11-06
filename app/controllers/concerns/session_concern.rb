@@ -19,7 +19,7 @@ module SessionConcern
   end
 
   def current_authorization
-    @current_authorization ||= Authorization.find_by(jwt_token: auth_token) rescue nil
+    @current_authorization ||= Authorization.decode_jwt_and_find(auth_token) rescue nil
   end
 
   def signed_in?
