@@ -3,7 +3,7 @@ class DirectionSerializer < ActiveModel::Serializer
   attributes :id, :title, :description, :percents_result
 
   delegate :percents_result, to: :object
-  has_many :steps
+  has_many :steps, serializer: StepSerializer
   has_one :user
 
   def steps
