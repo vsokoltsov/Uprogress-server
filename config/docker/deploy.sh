@@ -13,7 +13,7 @@ echo "DOCKER DEPLOY"
 # docker push "$DOCKER_IMAGE:latest"
 
 #COPY docker_compose file
-scp "$(pwd)/docker-compose.yml" "ec2-user@$HOST_IP:/home/ec2-user"
+scp "$(pwd)/docker-compose.production.yml" "ec2-user@$HOST_IP:/home/ec2-user"
 
 #CONNECT_TO SSH AND RUN SCRIPT
 ssh "ec2-user@$HOST_IP" 'bash -s' < "$(pwd)/config/docker/$DOCKER_CONFIG_SCRIPT"
