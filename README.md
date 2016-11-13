@@ -4,7 +4,7 @@
 
 ## Documentation
 
-Documentation for API available [here](https://github.com/vforvad/Uprogress-server/wiki/Docs)
+Documentation for API available [here](https://github.com/vforvad/Uprogress-server/wiki)
 
 ## Setup
 
