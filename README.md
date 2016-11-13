@@ -2,6 +2,10 @@
 [![Code Climate](https://codeclimate.com/github/vforvad/Uprogress-server/badges/gpa.svg)](https://codeclimate.com/github/vforvad/Uprogress-server)
 [![Issue Count](https://codeclimate.com/github/vforvad/Uprogress-server/badges/issue_count.svg)](https://codeclimate.com/github/vforvad/Uprogress-server)
 
+## Documentation
+
+Documentation for API available [here](https://github.com/vforvad/Uprogress-server/wiki/Docs)
+
 ## Setup
 
 First of all, pleas make sure, that you install docker fully and properly (`docker-machine`,
