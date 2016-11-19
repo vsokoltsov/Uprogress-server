@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class Api::V1::AttachmentsController < Api::ApiController
   def create
-    form = Form::Attachment.new(Attachment.new, params)
+    form = Form::Attachment.new(Attachment.new, params.to_unsafe_hash)
     if form.submit
       render json: form.object, serializer: AttachmentSerializer, status: :ok
     else
