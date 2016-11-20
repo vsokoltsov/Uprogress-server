@@ -1,13 +1,26 @@
 #!/bin/bash
 
-export RAILS_ENV=production
+# IMPORT KEYS
+echo "IMPORT KEYS"
+source "/home/ec2-user/keys.sh"
+export RAILS_ENV="production"
+export S3_BUCKET=$S3_BUCKET
+export S3_KEY=$S3_KEY
+export S3_SECRET=$S3_SECRET
+export SECRET_KEY_BASE=$SECRET_KEY_BASE
+export JWT_SECRET=$JWT_SECRET
+# RENAME docker-compose.yml file
+mv docker-compose.production.yml docker-compose.yml
+
 # PULL LATEST IMAGE
 docker-compose pull
 
-if [ "$(docker ps | grep vsokoltsov/uprogress)" == ""]
+#CHECK IF CONTAINER RUNNING
+running_docker="$(docker ps | grep vsokoltsov/uprogres)"
+if [ $running_docker == ""]
 then
   echo "RUN"
-  docker-compose up
+  docker-compose up -d
 else
   echo "RESTART"
   docker-compose restart
