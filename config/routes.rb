@@ -14,6 +14,7 @@ Rails.application.routes.draw do
           resources :steps
         end
       end
+      resources :authorizations, only: [:index, :destroy]
     end
   end
 end
