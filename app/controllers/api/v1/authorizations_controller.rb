@@ -8,5 +8,7 @@ class Api::V1::AuthorizationsController < Api::ApiController
   end
 
   def destroy
+    authorization = Authorization.find(params[:id])
+    render json: { authorization: authorization } if authorization.destroy
   end
 end
