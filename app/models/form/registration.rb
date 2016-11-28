@@ -12,6 +12,7 @@ class Form::Registration < Form::Base
 
   validates :nick, presence: true
   validate :nick_length
+  validates_confirmation_of :password, if: lambda { |m| m.password.present? }
 
   def attributes=(attrs)
     super(attrs)
