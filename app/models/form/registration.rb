@@ -10,7 +10,7 @@ class Form::Registration < Form::Base
 
   attr_accessor :token, :authorization
 
-  validates :nick, presence: true
+  validates :nick, :authorization, presence: true
   validate :nick_length
   validates_confirmation_of :password, if: lambda { |m| m.password.present? }
 
@@ -47,8 +47,8 @@ class Form::Registration < Form::Base
   private
 
   def nick_length
-    nick_size = nick.scan(/\w+/).size
-    if nick_size > 1
+    nick_size = nick&.scan(/\w+/)&.size
+    if nick_size.present? && nick_size > 1
       erros.add(:nick, 'Maximum one word')
       false
     end
