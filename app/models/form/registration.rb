@@ -20,13 +20,15 @@ class Form::Registration < Form::Base
   end
 
   def email=(attr)
-    super(attr.downcase.strip)
+    super(attr.downcase.strip) if attr
   end
 
   def nick=(attr)
-    nick_value = attr.downcase.strip.gsub(/\.|-/, '_')
-    translated = Translit.convert(nick_value, :english)
-    super(translated)
+    if attr
+      nick_value = attr.downcase.strip.gsub(/\.|-/, '_')
+      translated = Translit.convert(nick_value, :english)
+      super(translated)
+    end
   end
 
   def submit
