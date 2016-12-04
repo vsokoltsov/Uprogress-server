@@ -1,22 +1,28 @@
 # frozen_string_literal: true
 class Api::V1::UsersController < Api::ApiController
+  before_action :validate_token, only: :update
+  before_action :find_user
+
   def show
-    user = User.friendly.find(params[:id])
-    render json: user, serializer: UserSerializer
+    render json: @user, serializer: UserSerializer
   end
 
   def update
-    user = User.find(params[:id])
-    form = Form::User.new(user, params[:user].to_unsafe_hash)
+    form = Form::User.new(@user, params[:user]&.to_unsafe_hash)
     if form.submit
-      render json: user, serializer: CurrentUserSerializer
+      render json: form.object, serializer: CurrentUserSerializer
     else
       render json: { errors: form.errors }, status: :unprocessable_entity
     end
   end
 
   def statistics
-    user = User.friendly.find(params[:id])
-    render json: user, serializer: StatisticsSerializer
+    render json: @user, serializer: StatisticsSerializer
+  end
+
+  private
+
+  def find_user
+    @user = User.friendly.find(params[:id])
   end
 end

@@ -22,7 +22,7 @@ describe Api::V1::RegistrationsController do
     }.stringify_keys!
   end
 
-  describe '#create' do
+  describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates a new user' do
         expect do

@@ -14,7 +14,7 @@ describe Api::V1::SessionsController do
   end
   let!(:authorization) { create :authorization }
 
-  describe '#create' do
+  describe 'POST #create' do
     context 'with valid attributes' do
       it 'create new token for user' do
         post :create, params: { user: { email: user.email,
@@ -38,7 +38,7 @@ describe Api::V1::SessionsController do
     end
   end
 
-  describe '#current' do
+  describe 'GET #current' do
     it 'receives current user' do
       get_with_token authorization, :current
       expect(JSON.parse(response.body)['current_user']['id']).to eq(authorization.user.id)
