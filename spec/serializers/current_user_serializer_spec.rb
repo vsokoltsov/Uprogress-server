@@ -32,7 +32,7 @@ describe CurrentUserSerializer do
   describe 'relations' do
     let!(:object) { subject[root_key] }
 
-    describe 'has_many :steps' do
+    describe 'has_one :attachment' do
       it 'has steps relation key' do
         expect(object).to have_key('attachment')
       end
