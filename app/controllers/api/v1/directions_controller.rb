@@ -9,15 +9,11 @@ class Api::V1::DirectionsController < Api::ApiController
   end
 
   def create
-    form = Form::Direction.new(
+    @form = Form::Direction.new(
       current_user.directions.build,
       params[:direction].to_unsafe_hash
     )
-    if form.submit
-      render json: form.object, serializer: DirectionSerializer
-    else
-      render json: { errors: form.errors }, status: :unprocessable_entity
-    end
+    handle_form_submit!
   end
 
   def show
@@ -27,11 +23,17 @@ class Api::V1::DirectionsController < Api::ApiController
 
   def update
     direction = current_user.directions.find(params[:id])
-    form = Form::Direction.new(direction, params[:direction].to_unsafe_hash)
-    if form.submit
-      render json: form.object, serializer: DirectionSerializer
+    @form = Form::Direction.new(direction, params[:direction].to_unsafe_hash)
+    handle_form_submit!
+  end
+
+  private
+
+  def handle_form_submit!
+    if @form.submit
+      render json: @form.object, serializer: DirectionSerializer
     else
-      render json: { errors: form.errors }, status: :unprocessable_entity
+      render json: { errors: @form.errors }, status: :unprocessable_entity
     end
   end
 end
