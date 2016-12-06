@@ -7,6 +7,9 @@ engines:
     - 1a1b3368951a20d02976c9207e5981df37d1bfa7dbbdb925eecd9013ecfeaa0f
   duplication:
     enabled: true
+    checks:
+      Similar code:
+        enabled: false
     config:
       languages:
       - ruby
