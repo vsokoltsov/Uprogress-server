@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 class StatisticsSerializer < ActiveModel::Serializer
-  # root 'statistics'
+  attr_accessor :query_scope
   attributes :directions, :steps, :directions_steps
+
+  def query_scope
+    @query_scope ||= UserDirectionsScope.new(object)
+  end
 
   def directions
     directions_count = object.directions.size.to_f

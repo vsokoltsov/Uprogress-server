@@ -1,3 +1,8 @@
 # frozen_string_literal: true
-class UserDirectionScope
+class UserDirectionsScope
+  attr_accessor :user
+
+  def initialize(user)
+    self.user = user
+  end
 end

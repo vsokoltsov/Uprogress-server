@@ -68,7 +68,42 @@ describe StatisticsSerializer do
     end
 
     describe '#steps' do
+      context 'directions are empty' do
+        it 'return empty array' do
+          expect(object['steps']).to match_array []
+        end
+      end
 
+      context 'steps (and directions) are present' do
+        let!(:direction) { create :direction, user_id: user.id }
+        let!(:finished_direction) { create :direction, user_id: user.id }
+        let!(:step) { create :step, direction_id: direction.id }
+        let!(:finished_step) { create :step, direction_id: finished_direction.id, is_done: true }
+        let!(:in_progress_direction) { create :direction, user_id: user.id }
+        let!(:in_progress_step) do
+          create :step, direction_id: in_progress_direction.id, is_done: false
+        end
+
+        before do
+          user.reload
+          serializer = StatisticsSerializer.new(user)
+          serialization = ActiveModelSerializers::Adapter.create(serializer)
+          root_key = serializer.json_key
+          subject = JSON.parse(serialization.to_json)
+          @object = subject[root_key]
+        end
+
+        it 'return array with lenth 3' do
+          expect(@object['directions'].size).to eq(3)
+        end
+
+        ['Finished', 'Cancelled', 'In progress'].each_with_index do |label, index|
+          it "object array include hash with label #{label}" do
+            expect(@object['steps'][index]['label']).to eq(label)
+          end
+        end
+
+      end
     end
 
     describe '#direction_steps' do
