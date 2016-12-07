@@ -77,12 +77,12 @@ describe StatisticsSerializer do
       context 'steps (and directions) are present' do
         let!(:direction) { create :direction, user_id: user.id }
         let!(:finished_direction) { create :direction, user_id: user.id }
-        let!(:step) { create :step, direction_id: direction.id }
-        let!(:finished_step) { create :step, direction_id: finished_direction.id, is_done: true }
         let!(:in_progress_direction) { create :direction, user_id: user.id }
+        let!(:finished_step) { create :step, direction_id: finished_direction.id, is_done: true }
         let!(:in_progress_step) do
           create :step, direction_id: in_progress_direction.id, is_done: false
         end
+        let!(:step) { create :step, direction_id: direction.id, is_done: nil }
 
         before do
           user.reload
@@ -97,9 +97,9 @@ describe StatisticsSerializer do
           expect(@object['directions'].size).to eq(3)
         end
 
-        ['Finished', 'Cancelled', 'In progress'].each_with_index do |label, index|
+        ['Finished', 'Cancelled', 'In progress'].each_with_index do |label|
           it "object array include hash with label #{label}" do
-            expect(@object['steps'][index]['label']).to eq(label)
+            expect(@object['steps'].map { |x| x['label'] }).to include(label)
           end
         end
 
