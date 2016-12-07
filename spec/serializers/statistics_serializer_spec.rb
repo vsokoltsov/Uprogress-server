@@ -107,7 +107,48 @@ describe StatisticsSerializer do
     end
 
     describe '#direction_steps' do
+      context 'directions are empty' do
+        it 'return empty array' do
+          expect(object['directions_steps']).to match_array []
+        end
+      end
 
+      context 'directions are not empty' do
+        let!(:direction) { create :direction, user_id: user.id }
+        let!(:finished_direction) { create :direction, user_id: user.id }
+        let!(:in_progress_direction) { create :direction, user_id: user.id }
+        let!(:finished_step) { create :step, direction_id: finished_direction.id, is_done: true }
+        let!(:in_progress_step) do
+          create :step, direction_id: in_progress_direction.id, is_done: false
+        end
+        let!(:step) { create :step, direction_id: direction.id, is_done: nil }
+
+        before do
+          user.reload
+          serializer = StatisticsSerializer.new(user)
+          serialization = ActiveModelSerializers::Adapter.create(serializer)
+          root_key = serializer.json_key
+          subject = JSON.parse(serialization.to_json)
+          @object = subject[root_key]
+          @directions = @object['directions_steps'].map { |x| x['label'] }
+        end
+
+        it 'return array with lenth 3' do
+          expect(@object['directions_steps'].size).to eq(3)
+        end
+
+        it 'contains the direction title' do
+          expect(@directions).to include(direction.title)
+        end
+
+        it 'contains the finished direction title' do
+          expect(@directions).to include(finished_direction.title)
+        end
+
+        it 'contains the in progress direction title' do
+          expect(@directions).to include(in_progress_direction.title)
+        end
+      end
     end
   end
 end
