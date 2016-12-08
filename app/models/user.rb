@@ -11,23 +11,9 @@ class User < ActiveRecord::Base
 
   friendly_id :nick, use: [:finders]
 
-  def finished_directions
-    directions.select do |attr|
-      steps_status = attr.steps.map(&:is_done)
-      steps_status.uniq.length == 1 && steps_status.first
-    end
-  end
+  delegate :finished_directions, :new_directions, :in_progress_directions, to: :scope_object
 
-  def new_directions
-    directions.select do |attr|
-      attr.steps.blank?
-    end
-  end
-
-  def in_progress_directions
-    directions.select do |item|
-      steps_status = item.steps.map(&:is_done)
-      steps_status.uniq.size > 1 || !steps_status.first.nil?
-    end
+  def scope_object
+    @scope_object ||= Scope::User.new(self)
   end
 end

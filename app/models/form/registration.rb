@@ -10,7 +10,7 @@ class Form::Registration < Form::Base
 
   attr_accessor :token, :authorization
 
-  validates :nick, presence: true
+  validates :nick, :authorization, presence: true
   validate :nick_length
   validates_confirmation_of :password, if: lambda { |m| m.password.present? }
 
@@ -20,13 +20,15 @@ class Form::Registration < Form::Base
   end
 
   def email=(attr)
-    super(attr.downcase.strip)
+    super(attr.downcase.strip) if attr
   end
 
   def nick=(attr)
-    nick_value = attr.downcase.strip.gsub(/\.|-/, '_')
-    translated = Translit.convert(nick_value, :english)
-    super(translated)
+    if attr
+      nick_value = attr.downcase.strip.gsub(/\.|-/, '_')
+      translated = Translit.convert(nick_value, :english)
+      super(translated)
+    end
   end
 
   def submit
@@ -47,8 +49,8 @@ class Form::Registration < Form::Base
   private
 
   def nick_length
-    nick_size = nick.scan(/\w+/).size
-    if nick_size > 1
+    nick_size = nick&.scan(/\w+/)&.size
+    if nick_size.present? && nick_size > 1
       erros.add(:nick, 'Maximum one word')
       false
     end
