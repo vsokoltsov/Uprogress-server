@@ -34,7 +34,7 @@ describe StepSerializer do
     let!(:object) { subject[root_key] }
 
     describe 'belongs_to :direction' do
-      it 'has steps relation key' do
+      it 'has direction relation key' do
         expect(object).to have_key('direction')
       end
 
@@ -45,7 +45,7 @@ describe StepSerializer do
             expect(object['direction']).to have_key(attr)
           end
 
-          it "#{attr} equal to step #{attr} value" do
+          it "#{attr} equal to direction #{attr} value" do
             expect(object['direction'][attr]).to eq(direction.send(attr.to_sym))
           end
         end
