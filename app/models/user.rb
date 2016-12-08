@@ -14,6 +14,6 @@ class User < ActiveRecord::Base
   delegate :finished_directions, :new_directions, :in_progress_directions, to: :scope_object
 
   def scope_object
-    @scope_object ||= UserScope.new(self)
+    @scope_object ||= Scope::User.new(self)
   end
 end

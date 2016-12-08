@@ -3,9 +3,9 @@ require 'rails_helper'
 # frozen_string_literal: true
 require 'rails_helper'
 
-describe StatisticsScope do
+describe Scope::Statistics do
   let!(:user) { create :user }
-  let!(:user_direction_scope) { StatisticsScope.new(user) }
+  let!(:user_direction_scope) { Scope::Statistics.new(user) }
 
   describe '#directions' do
     subject { user_direction_scope.directions }

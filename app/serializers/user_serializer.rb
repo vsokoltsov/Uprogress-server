@@ -11,11 +11,11 @@ class UserSerializer < ActiveModel::Serializer
   has_one :attachment, serializer: AttachmentSerializer
 
   def directions_scope
-    @directions ||= UserDirectionsScope.new(object)
+    @directions ||= Scope::UserDirections.new(object)
   end
 
   def logs_scope
-    @logs_scope ||= LogsScope.new(object)
+    @logs_scope ||= Scope::Logs.new(object)
   end
 
   def json_key

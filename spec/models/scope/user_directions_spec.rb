@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-describe UserDirectionsScope do
+describe Scope::UserDirections do
   let!(:user) { create :user }
-  let!(:directions_scope) { UserDirectionsScope.new(user) }
+  let!(:directions_scope) { Scope::UserDirections.new(user) }
 
   context 'queries' do
 

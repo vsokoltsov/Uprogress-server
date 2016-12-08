@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class UserScope
+class Scope::User
   attr_accessor :user
 
   def initialize(user)

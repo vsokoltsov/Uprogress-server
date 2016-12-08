@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-describe LogsScope do
+describe Scope::Logs do
   let!(:user) { create :user }
   let!(:system_log) { create :system_log, user_id: user.id }
   let!(:a_system_log) { create :system_log, user_id: user.id }
-  let!(:scope_object) { LogsScope.new(user) }
+  let!(:scope_object) { Scope::Logs.new(user) }
 
   describe '#recent_actions' do
     subject { scope_object.recent_actions[Time.zone.today] }

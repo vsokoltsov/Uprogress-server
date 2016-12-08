@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-describe UserScope do
+describe Scope::User do
   let!(:user) { create :user }
   let!(:direction) { create :direction, user_id: user.id }
   let!(:step) { create :step, direction_id: direction.id }
-  let!(:scope_object) { UserScope.new(user) }
+  let!(:scope_object) { Scope::User.new(user) }
 
   describe '#finished_directions' do
     let!(:direction_f) { create :direction, user_id: user.id }

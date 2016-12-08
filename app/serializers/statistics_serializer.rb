@@ -6,7 +6,7 @@ class StatisticsSerializer < ActiveModel::Serializer
   delegate :directions, :steps, :directions_steps, to: :query_scope
 
   def query_scope
-    @query_scope ||= StatisticsScope.new(object)
+    @query_scope ||= Scope::Statistics.new(object)
   end
 
   def json_key

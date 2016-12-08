@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class LogsScope
+class Scope::Logs
   attr_accessor :user
 
   def initialize(user)

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class StatisticsScope
+class Scope::Statistics
   attr_accessor :user
 
   MAIN_COLOR = '#3366CC'
