@@ -42,3 +42,10 @@ end
 Step.all.each do |step|
   Random.new_seed.odd? ? step.update(is_done: true) : step.update(is_done: false)
 end
+
+# Set finished steps count
+Direction.all.each do |direction|
+  steps_count = direction.steps.size
+  finished_steps_count = direction.steps.select(&:is_done).size
+  direction.update(steps_count: steps_count, finished_steps_count: finished_steps_count)
+end
