@@ -67,9 +67,9 @@ ActiveRecord::Schema.define(version: 20161217103731) do
   end
 
   create_table "system_logs", force: :cascade do |t|
-    t.integer  "user_id",                 null: false
-    t.string   "operation",               null: false
-    t.jsonb    "data",       default: {}, null: false
+    t.integer  "user_id",                   null: false
+    t.string   "operation",                 null: false
+    t.jsonb    "data",       default: "{}", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["data"], name: "index_system_logs_on_data", using: :gin

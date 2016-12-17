@@ -17,6 +17,13 @@ describe Api::V1::StepsController do
         end.to change(Step, :count).by(1)
       end
 
+      it 'increment the steps count value' do
+        post_with_token auth, :create, user_id: auth.user.id, direction_id: direction.id,
+                                       step: step.attributes
+        direction.reload
+        expect(direction.steps_count).to eq(direction.steps.size)
+      end
+
       context 'response' do
         before do
           post_with_token auth, :create, user_id: auth.user.id, direction_id: direction.id,
