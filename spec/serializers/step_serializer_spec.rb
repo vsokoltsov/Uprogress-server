@@ -40,7 +40,7 @@ describe StepSerializer do
 
       context 'direction attributes' do
         %w(id title description
-           percents_result percents_result).each do |attr|
+           percents_result finished_steps_count).each do |attr|
           it "contains #{attr} key" do
             expect(object['direction']).to have_key(attr)
           end
