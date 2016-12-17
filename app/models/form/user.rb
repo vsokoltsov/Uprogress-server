@@ -9,6 +9,6 @@ class Form::User < Form::Base
   validates :email, :first_name, :last_name, presence: true
 
   def attachment=(image)
-    super(Attachment.find_by(id: image["id"], attachable_type: @object.class.to_s))
+    super(Attachment.find_by(id: image["id"], attachable_type: object.class.to_s))
   end
 end

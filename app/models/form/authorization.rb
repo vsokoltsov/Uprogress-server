@@ -7,7 +7,7 @@ class Form::Authorization < Form::Base
   attribute :app_version
 
   def submit!
-    @object.assign_attributes(attributes)
-    @object.save!
+    self.object.assign_attributes(attributes)
+    self.object.save!
   end
 end

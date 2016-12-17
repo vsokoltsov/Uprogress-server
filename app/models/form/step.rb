@@ -16,9 +16,9 @@ class Form::Step < Form::Base
   private
 
   def update_finished_steps!
-    if @operation.eql?('update') && @object.previous_changes.has_key?('is_done')
-      direction = @object.direction
-      operation = @object.is_done ? OPERATION_INCREASE : OPERATION_DECREASE
+    if operation.eql?('update') && object.previous_changes.has_key?('is_done')
+      direction = object.direction
+      operation = object.is_done ? OPERATION_INCREASE : OPERATION_DECREASE
       finished_steps_count = direction.finished_steps_count.send(operation, 1)
       direction.update(finished_steps_count: finished_steps_count) if finished_steps_count >= 0
     end
