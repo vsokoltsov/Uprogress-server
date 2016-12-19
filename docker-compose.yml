@@ -5,7 +5,7 @@ services:
     stdin_open: true
     build: .
     environment:
-      RAILS_ENV: $RAILS_ENV
+      RAILS_ENV: 'development'
     volumes:
       - './:/var/www/docker_example'
 
