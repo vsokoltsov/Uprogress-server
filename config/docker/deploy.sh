@@ -9,7 +9,7 @@ START_SERVER="run_server.sh"
 echo "DOCKER DEPLOY"
 
 # BUILD NEW IMAGE
-docker build -t "$DOCKER_IMAGE:latest" -f "$(pwd)/config/docker/Dockerfile.prod" .
+docker build -t "$DOCKER_IMAGE:latest" -f "$(pwd)/config/docker/Dockerfile" .
 
 #PUSH TO DOCKER HUB
 docker push "$DOCKER_IMAGE:latest"

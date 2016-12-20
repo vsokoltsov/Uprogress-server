@@ -107,6 +107,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    memoist (0.15.0)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -248,6 +249,7 @@ DEPENDENCIES
   json_spec
   jwt
   launchy
+  memoist
   mini_magick
   olive_branch
   pg (~> 0.15)
