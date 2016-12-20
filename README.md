@@ -23,16 +23,19 @@ After that, you can run server with
 You may want to add an `alias dc="docker-compose run app"` for quick access to rails ecosystem commands.
 Or add `docker-machine ip` value to `/etc/hosts` with `dockerhost` or something
 
+**So, the main workflow for now is**
+* Run `docker-compose build`
+* Run `docker-compose up`
+* Out of `docker-compose up` command
+* Move to next paragraph
+
 ## Run
 
-For proper running you should do this steps (after installing other stuff)
-
-# Boot2Docker
-
-* install boot2docker via brew (`brew install boot2docker`)
-* init virtual machine (`boot2docker init`)
-* run virtual machin (`boot2docker up`)
-* connect to docker daeon (`eval "$(boot2docker shellinit)"`)
+After all preparation steps you can run this commands:
+* `dc bin/rake db:create` - Create database
+* `dc bin/rake db:migrate` - Run migrations
+* `dc bin/rake db:seed` - Run seeds
+* `docker-compose run --rm --service-ports app bin/rails server -b 0.0.0.0` - run server
 
 # Docker-machine
 
