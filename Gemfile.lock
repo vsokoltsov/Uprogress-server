@@ -100,6 +100,9 @@ GEM
     jsonapi-parser (0.1.1.beta3)
     jsonapi-renderer (0.1.1.beta1)
     jwt (1.5.6)
+    kaminari (0.17.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -248,6 +251,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   json_spec
   jwt
+  kaminari
   launchy
   memoist
   mini_magick

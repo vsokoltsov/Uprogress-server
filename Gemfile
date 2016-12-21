@@ -24,6 +24,7 @@ gem 'request_store'
 gem 'puma', '~> 3.0'
 gem 'faker', '~> 1.6.3'
 gem 'memoist'
+gem 'kaminari'
 
 group :development, :test do
   gem 'rspec-rails'
