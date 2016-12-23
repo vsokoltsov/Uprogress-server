@@ -4,13 +4,8 @@ services:
     image: vsokoltsov/uprogress
     build: .
     command: bash -l -c '/var/www/docker_example/config/docker/run_server.sh'
-    environment:
-      RAILS_ENV: $RAILS_ENV
-      SECRET_KEY_BASE: $SECRET_KEY_BASE
-      S3_BUCKET: $S3_BUCKET
-      S3_KEY: $S3_KEY
-      S3_SECRET: $S3_SECRET
-      JWT_SECRET: $JWT_SECRET
+    env_file:
+      - /root/.env.production
 
     links:
       - db

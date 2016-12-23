@@ -26,7 +26,7 @@ if [ ! -f "$(pwd)/config/docker/$KEYS_FILE" ]; then
 else
   scp  "$(pwd)/config/docker/$KEYS_FILE" "$USER@$HOST_IP:$HOME_DIRECTORY"
 fi
-scp  "$(pwd)/config/docker/$KEYS_FILE" "$USER@$HOST_IP:$HOME_DIRECTORY/.ssh/environment"
+scp  "$(pwd)/config/docker/$KEYS_FILE" "$USER@$HOST_IP:$HOME_DIRECTORY/.env.production"
 
 # COPY START SERVER FILE
 scp  "$(pwd)/config/docker/$START_SERVER" "$USER@$HOST_IP:$HOME_DIRECTORY"
