@@ -4,7 +4,7 @@ class Api::V1::StepsController < Api::ApiController
 
   def index
     direction = Direction.find(params[:direction_id])
-    steps = direction.steps.limit(10).page(params[:page] || 1).per(10)
+    steps = direction.steps.page(params[:page] || 1).per(10)
     render json: steps, each_serializer: StepSerializer
   end
 
