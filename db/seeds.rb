@@ -18,6 +18,13 @@ User.create!(first_name: 'Vadim',
              password: 'Altair_69',
              password_confirmation: 'Altair_69',
              email: 'vforvad@gmail.com')
+# Test user
+User.create!(first_name: 'Test',
+             last_name: 'Test',
+             nick: 'testuser',
+             password: 'testuser',
+             password_confirmation: 'testuser',
+             email: 'test@example.com')
 
 # create courses for each user
 User.all.each do |user|
