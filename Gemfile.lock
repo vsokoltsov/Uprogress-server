@@ -100,6 +100,9 @@ GEM
     jsonapi-parser (0.1.1.beta3)
     jsonapi-renderer (0.1.1.beta1)
     jwt (1.5.6)
+    kaminari (0.17.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -107,6 +110,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    memoist (0.15.0)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -247,7 +251,9 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   json_spec
   jwt
+  kaminari
   launchy
+  memoist
   mini_magick
   olive_branch
   pg (~> 0.15)

@@ -2,7 +2,7 @@
 
 # IMPORT KEYS
 echo "IMPORT KEYS"
-source "/home/ec2-user/keys.sh"
+source "/root/keys.sh"
 export RAILS_ENV="production"
 export S3_BUCKET=$S3_BUCKET
 export S3_KEY=$S3_KEY

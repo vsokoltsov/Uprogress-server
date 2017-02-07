@@ -3,3 +3,4 @@
 .dockerignore
 tmp/*
 config/docker/keys.sh
+log/*

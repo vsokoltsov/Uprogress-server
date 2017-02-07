@@ -18,6 +18,13 @@ User.create!(first_name: 'Vadim',
              password: 'Altair_69',
              password_confirmation: 'Altair_69',
              email: 'vforvad@gmail.com')
+# Test user
+User.create!(first_name: 'Test',
+             last_name: 'Test',
+             nick: 'testuser',
+             password: 'testuser',
+             password_confirmation: 'testuser',
+             email: 'test@example.com')
 
 # create courses for each user
 User.all.each do |user|
@@ -41,4 +48,11 @@ end
 # Randomly set state for steps
 Step.all.each do |step|
   Random.new_seed.odd? ? step.update(is_done: true) : step.update(is_done: false)
+end
+
+# Set finished steps count
+Direction.all.each do |direction|
+  steps_count = direction.steps.size
+  finished_steps_count = direction.steps.select(&:is_done).size
+  direction.update(steps_count: steps_count, finished_steps_count: finished_steps_count)
 end

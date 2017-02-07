@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class StepSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :is_done, :direction_id
+  attributes :id, :title, :description, :is_done, :direction_id, :updated_at
 
   belongs_to :direction
 

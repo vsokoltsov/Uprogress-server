@@ -23,6 +23,8 @@ gem 'mini_magick'
 gem 'request_store'
 gem 'puma', '~> 3.0'
 gem 'faker', '~> 1.6.3'
+gem 'kaminari'
+gem 'memoist'
 
 group :development, :test do
   gem 'rspec-rails'

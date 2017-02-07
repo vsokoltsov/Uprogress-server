@@ -17,3 +17,4 @@ config/database.yml
 config/local_env.yml
 config/docker/keys.sh
 public/uploads
+log/*

@@ -4,7 +4,7 @@ class Api::V1::DirectionsController < Api::ApiController
   before_action :validate_token, except: [:index, :show]
 
   def index
-    directions = @user.directions
+    directions = @user.directions.limit(10).page(params[:page] || 1).per(10)
     render json: directions, each_serializer: DirectionsSerializer
   end
 

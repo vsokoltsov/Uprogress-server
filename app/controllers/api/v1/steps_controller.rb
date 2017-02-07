@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 class Api::V1::StepsController < Api::ApiController
-  before_action :validate_token
+  before_action :validate_token, except: :index
+
+  def index
+    direction = Direction.find(params[:direction_id])
+    steps = direction.steps.page(params[:page] || 1).per(10)
+    render json: steps, each_serializer: StepSerializer
+  end
 
   def create
     direction = Direction.find(params[:direction_id])

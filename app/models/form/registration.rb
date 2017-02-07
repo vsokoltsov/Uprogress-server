@@ -16,7 +16,7 @@ class Form::Registration < Form::Base
 
   def attributes=(attrs)
     super(attrs)
-    @authorization = attrs['authorization']
+    self.authorization = attrs['authorization']
   end
 
   def email=(attr)
@@ -34,8 +34,8 @@ class Form::Registration < Form::Base
   def submit
     begin
       super do
-        auth = build_authorizaiton(@authorization, @object)
-        @token = generate_token_for_auth(auth)
+        auth = build_authorizaiton(authorization, object)
+        self.token = generate_token_for_auth(auth)
         true
       end
     rescue ActiveRecord::RecordNotUnique => e

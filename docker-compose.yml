@@ -1,19 +1,24 @@
 version: '2'
 services:
+  bundle:
+    image: busybox
+    volumes:
+      - /root/bundle
   app:
     tty: true
     stdin_open: true
     build: .
     environment:
-      RAILS_ENV: $RAILS_ENV
-    volumes:
-      - './:/var/www/docker_example'
-
+      - "RAILS_ENV=development"
+      - "BUNDLE_PATH=/root/bundle"
     links:
       - db
-
     ports:
       - "3000:3000"
+    volumes:
+      - './:/root/uprogress'
+    volumes_from:
+      - bundle
 
   db:
     image: postgres:9.4.5

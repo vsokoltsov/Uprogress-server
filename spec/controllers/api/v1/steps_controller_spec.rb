@@ -8,6 +8,20 @@ describe Api::V1::StepsController do
 
   before { request.env['CONTENT_TYPE'] = 'application/json' }
 
+  describe 'GET #index' do
+    before do
+      get :index, params: { user_id: auth.user.id, direction_id: direction.id }
+    end
+
+    %w(id title description is_done).each do |attr|
+      it "success response contains #{attr}" do
+        expect(response.body).to be_json_eql(
+          step.send(attr.to_sym).to_json
+        ).at_path("steps/0/#{attr}")
+      end
+    end
+  end
+
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'create a new step' do
@@ -15,6 +29,13 @@ describe Api::V1::StepsController do
           post_with_token auth, :create, user_id: auth.user.id, direction_id: direction.id,
                                          step: step.attributes
         end.to change(Step, :count).by(1)
+      end
+
+      it 'increment the steps count value' do
+        post_with_token auth, :create, user_id: auth.user.id, direction_id: direction.id,
+                                       step: step.attributes
+        direction.reload
+        expect(direction.steps_count).to eq(direction.steps.size)
       end
 
       context 'response' do
