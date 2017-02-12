@@ -11,7 +11,7 @@ class UserSerializer < ActiveModel::Serializer
   has_one :attachment, serializer: AttachmentSerializer
 
   def directions_scope
-    @directions ||= Scope::UserDirections.new(object)
+    @directions_scope ||= Scope::UserDirections.new(object)
   end
 
   def logs_scope

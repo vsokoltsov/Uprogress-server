@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class DirectionSerializer < ActiveModel::Serializer
   attributes :id, :title, :description, :finished_steps_count,
-             :percents_result, :updated_at
+             :percents_result, :updated_at, :slug
 
   delegate :percents_result, to: :object
   has_many :steps, serializer: StepsSerializer
