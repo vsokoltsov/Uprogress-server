@@ -10,7 +10,7 @@ class Form::User < Form::Base
 
   def attachment=(image)
     if image
-      attachment = manage_attachment
+      attachment = manage_attachment(image)
       super(attachment)
     end
   end
