@@ -5,7 +5,13 @@ class Form::Attachment < Form::Base
 
   validates :attachable_type, :file, presence: true
 
-  def attributes=(attrs)
-    super(attrs)
+  def submit
+    super do
+      if attributes[:attachable_id]
+        attributes[:attachable_type].constantize
+                  .find(attributes[:attachable_id])
+                  .update(attachment: object)
+      end
+    end
   end
 end

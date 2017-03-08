@@ -18,7 +18,7 @@ class Form::User < Form::Base
   private
 
   def manage_attachment(image)
-    attachment = Attachment.find_by(id: image["id"], attachable_type: object.class.to_s)
+    attachment = ::Attachment.find_by(id: image["id"], attachable_type: object.class.to_s)
     attachment.update!(attachable_id: object.id)
     object.attachment = attachment
     attachment
