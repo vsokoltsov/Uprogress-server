@@ -12,6 +12,7 @@ services:
     links:
       - db
       - redis
+      - sidekiq
     ports:
       - "3000:3000"
     volumes:
