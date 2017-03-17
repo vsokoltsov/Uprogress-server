@@ -1,24 +1,23 @@
 version: '2'
 services:
-  bundle:
+  box:
     image: busybox
     volumes:
-      - /root/bundle
+      - /box
+
   app:
     tty: true
     stdin_open: true
     build: .
-    environment:
-      - "RAILS_ENV=development"
-      - "BUNDLE_PATH=/root/bundle"
     links:
       - db
+      - redis
     ports:
       - "3000:3000"
     volumes:
-      - './:/root/uprogress'
+      - '.:/root/uprogress'
     volumes_from:
-      - bundle
+      - box
 
   db:
     image: postgres:9.4.5
@@ -26,5 +25,29 @@ services:
       - "5432"
     volumes:
       - postgres:/var/lib/postgres
+
+  redis:
+    image: redis
+    command: redis-server
+    ports:
+      - '6379:6379'
+    volumes_from:
+      - box
+
+  sidekiq:
+    depends_on:
+      - 'db'
+      - 'redis'
+    build: .
+    command: bundle exec sidekiq
+    links:
+      - db
+      - redis
+    volumes:
+      - '.:/root/uprogress'
+    volumes_from:
+      - box
+
 volumes:
+  redis:
   postgres:

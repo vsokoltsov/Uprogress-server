@@ -2,6 +2,8 @@
 namespace :deploy do
   desc 'Deploy application'
   task production: :environment do
-    exec "/bin/bash #{Rails.root}/config/docker/deploy.sh"
+    # rubocop:disable Rails/FilePath
+    exec "/bin/bash #{Rails.root.join('config', 'docker', 'deploy.sh')}"
+    # rubocop:enable Rails/FilePath
   end
 end
