@@ -7,6 +7,7 @@ class UserMailer < ActionMailer::Base
   def restore_password(user)
     @user = user
     @token = generate_token_for_user(@user)
+    @host = ENV['CLIENT_HOST']
     mail to: @user.email
   end
 end
