@@ -20,7 +20,7 @@ class Api::V1::SessionsController < Api::ApiController
   def restore_password
     form = Form::RestorePassword.new(nil, params[:user]&.to_unsafe_hash)
     if form.restore
-      render json: { message: 'Mail was succesfully sended' }
+      render json: { token: form.token, message: 'Mail was succesfully sended' }
     else
       render json: { errors: form.errors }, status: :unprocessable_entity
     end

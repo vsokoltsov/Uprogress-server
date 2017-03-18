@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 class UserMailer < ActionMailer::Base
-  include JsonWebToken
   layout 'mailer'
   default from: 'uprogress@support.com'
 
-  def restore_password(user)
+  def restore_password(user, token)
     @user = user
-    @token = generate_token_for_user(@user)
+    @token = token
     @host = ENV['CLIENT_HOST']
     mail to: @user.email
   end
