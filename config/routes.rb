@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :registrations, only: [:create]
       resources :sessions, only: [:create, :destroy] do
-        get :current, on: :collection
+        collection do
+          get :current
+          post :restore_password
+        end
       end
       resources :attachments, only: [:create]
       resources :users do
