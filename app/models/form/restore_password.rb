@@ -7,6 +7,7 @@ class Form::RestorePassword < Form::Base
       ::UserMailer.delay.restore_password(user)
       true
     else
+      errors.add(:email, 'There is no such user')
       false
     end
   end
