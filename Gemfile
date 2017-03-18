@@ -46,4 +46,5 @@ group :test do
   gem 'database_cleaner', '~> 1.0.1'
   gem 'json_spec'
   gem 'launchy'
+  gem 'rspec-sidekiq'
 end
