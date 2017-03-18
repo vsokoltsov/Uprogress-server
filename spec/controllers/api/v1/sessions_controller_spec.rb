@@ -44,4 +44,21 @@ describe Api::V1::SessionsController do
       expect(JSON.parse(response.body)['current_user']['id']).to eq(authorization.user.id)
     end
   end
+
+  describe 'POST #restore_password' do
+    context 'with valid attributes' do
+      it 'returns token' do
+        post :restore_password, params: { user: { email: user.email } }
+        token = JSON.parse(response.body)['token']
+        expect(User.decode_jwt_and_find(token)).to eq(user)
+      end
+    end
+
+    context 'with invalid attributes' do
+      it 'receives error' do
+        post :restore_password, params: { user: { email: '' } }
+        expect(JSON.parse(response.body)['errors']).to have_key('email')
+      end
+    end
+  end
 end
