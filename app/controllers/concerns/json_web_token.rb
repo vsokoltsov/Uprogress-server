@@ -20,6 +20,10 @@ module JsonWebToken
     Rails.application.secrets.jwt_secret
   end
 
+  def generate_token_for_user(user)
+    JWT.encode({ id: user.id }, jwt_secret, 'HS256')
+  end
+
   def generate_token_for_auth(auth)
     JWT.encode({ id: auth.id }, jwt_secret, 'HS256')
   end
