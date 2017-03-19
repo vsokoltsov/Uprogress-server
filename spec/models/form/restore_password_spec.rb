@@ -14,6 +14,12 @@ describe Form::RestorePassword do
         ).to be_delayed(user, retrieve_access_token(user))
       end
 
+      it 'updates user reset_password_token field' do
+        form.restore
+        user.reload
+        expect(user.reset_password_token).not_to be_nil
+      end
+
       it 'creates token' do
         form.restore
         expect(
