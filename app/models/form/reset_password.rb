@@ -6,30 +6,38 @@ class Form::ResetPassword < Form::Base
   attribute :token
 
   validates_confirmation_of :password, if: lambda { |m| m.password.present? }
-  validate :token_expired?
-  validate :password_equal_to_previous_password?
+  with_options if: :decrypted_token? do |user|
+    user.validate :token_expired?
+    user.validate :password_equal_to_previous_password?
+  end
+
 
   def initialize(params = nil)
     self.attributes = params
-    @user = ::User.decode_jwt_and_find(token)
   end
 
   def reset
     return unless valid?
-    begin
-        ::Service::TransactionLock.run_with_message("#{user.nick}_reset_password") do
-          user.update(
-            password: password,
-            password_confirmation: password_confirmation,
-            reset_password_token: nil)
-        end
-        true
-    rescue JWT::DecodeError
-      errors.add(:token, 'Token is not valid')
+    ::Service::TransactionLock.run_with_message("#{user.nick}_reset_password") do
+      user.update(
+        password: password,
+        password_confirmation: password_confirmation,
+        reset_password_token: nil)
     end
+    true
   end
 
   private
+
+  def decrypted_token?
+    begin
+      @user = ::User.decode_jwt_and_find(token)
+      true
+    rescue JWT::DecodeError
+      errors.add(:token, 'Token is not valid')
+      false
+    end
+  end
 
   def token_expired?
     unless user.reset_password_token == token
