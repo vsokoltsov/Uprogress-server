@@ -7,6 +7,7 @@ class Form::ResetPassword < Form::Base
 
   validates_confirmation_of :password, if: lambda { |m| m.password.present? }
   validate :token_expired?
+  validate :password_equal_to_previous_password?
 
   def initialize(params = nil)
     self.attributes = params
@@ -29,9 +30,17 @@ class Form::ResetPassword < Form::Base
   end
 
   private
+
   def token_expired?
     unless user.reset_password_token == token
       errors.add(:token, 'Token has expired')
+    end
+  end
+
+  def password_equal_to_previous_password?
+    current_password = BCrypt::Password.new(user.password_digest)
+    if current_password == password
+      errors.add(:password, 'Equal to previous password')
     end
   end
 end
