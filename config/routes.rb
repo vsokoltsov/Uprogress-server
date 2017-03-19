@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         collection do
           get :current
           post :restore_password
+          put :reset_password
         end
       end
       resources :attachments, only: [:create]

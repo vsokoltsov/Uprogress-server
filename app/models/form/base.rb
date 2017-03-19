@@ -30,7 +30,7 @@ class Form::Base
       end
     end
   end
-
+  
   private
 
   def create_logs

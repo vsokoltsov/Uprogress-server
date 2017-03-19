@@ -25,4 +25,13 @@ class Api::V1::SessionsController < Api::ApiController
       render json: { errors: form.errors }, status: :unprocessable_entity
     end
   end
+
+  def reset_password
+    form = Form::ResetPassword.new(nil, params[:user]&.to_unsafe_hash)
+    if form.reset
+      render json: { message: 'Password was succesfully updated' }
+    else
+      render json: { errors: form.errors }, status: :unprocessable_entity
+    end
+  end
 end
