@@ -8,9 +8,13 @@ class Form::RestorePassword < Form::Base
   def restore
     return unless valid?
     user = ::User.find_by(email: email)
+
     if user
-      @token = generate_token_for_user(user)
-      ::UserMailer.delay.restore_password(user, token)
+      ::Service::TransactionLock.run_with_message("#{user.nick}_reset_password") do
+        @token = generate_token_for_user(user)
+        user.update(reset_password_token: token)
+        ::UserMailer.delay.restore_password(user, token)
+      end
       true
     else
       errors.add(:email, 'There is no such user')

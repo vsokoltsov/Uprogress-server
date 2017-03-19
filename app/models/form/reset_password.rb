@@ -1,23 +1,37 @@
 class Form::ResetPassword < Form::Base
+  attr_accessor :user
   include PasswordValidation
   attribute :password
   attribute :password_confirmation
   attribute :token
 
   validates_confirmation_of :password, if: lambda { |m| m.password.present? }
+  validate :token_expired?
+
+  def initialize(params = nil)
+    self.attributes = params
+    @user = ::User.decode_jwt_and_find(token)
+  end
 
   def reset
     return unless valid?
     begin
-        user = ::User.decode_jwt_and_find(token)
-        ActiveRecord::Base.with_advisory_lock("#{user.nick}_reset_password") do
-          ActiveRecord::Base.transaction do
-            user.update(password: password, password_confirmation: password_confirmation)
-          end
+        ::Service::TransactionLock.run_with_message("#{user.nick}_reset_password") do
+          user.update(
+            password: password,
+            password_confirmation: password_confirmation,
+            reset_password_token: nil)
         end
         true
     rescue JWT::DecodeError
       errors.add(:token, 'Token is not valid')
+    end
+  end
+
+  private
+  def token_expired?
+    unless user.reset_password_token == token
+      errors.add(:token, 'Token has expired')
     end
   end
 end
