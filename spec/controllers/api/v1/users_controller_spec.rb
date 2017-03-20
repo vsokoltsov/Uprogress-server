@@ -79,4 +79,41 @@ describe Api::V1::UsersController do
       end
     end
   end
+
+  describe 'PUT #reset_password' do
+
+    context 'with valid attributes' do
+      before do
+        put_with_token auth, :change_password, user: {
+          password: 'password123',
+          password_confirmation: 'password123'
+        }
+      end
+
+      %w(id first_name last_name location
+         nick description attachment).each do |attr|
+           it "contains #{attr} attribute" do
+             expect(response.body).to be_json_eql(auth.user.send(attr.to_sym).to_json)
+               .at_path("current_user/#{attr}")
+           end
+         end
+    end
+
+    context 'with invalid attributes' do
+      before do
+        put_with_token auth, :change_password, user: {
+          password: '',
+          password_confirmation: ''
+        }
+      end
+
+      context 'errors' do
+        %w(password).each do |attr|
+          it "contains #{attr} key" do
+            expect(JSON.parse(response.body)['errors']).to have_key(attr)
+          end
+        end
+      end
+    end
+  end
 end
