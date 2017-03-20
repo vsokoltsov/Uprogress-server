@@ -7,11 +7,9 @@ describe Form::ResetPassword do
     let!(:token) { retrieve_access_token(user) }
     before { user.update(reset_password_token: token) }
     let!(:form) do
-      ::Form::ResetPassword.new(
-        password: 'password',
-        password_confirmation: 'password',
-        token: token
-      )
+      ::Form::ResetPassword.new(nil, password: 'password',
+                                     password_confirmation: 'password',
+                                     token: token)
     end
 
     it 'set reset_password_token to nil' do
@@ -26,11 +24,9 @@ describe Form::ResetPassword do
       let!(:user) { create :user }
       let!(:token) { retrieve_access_token(user) }
       let!(:form) do
-        ::Form::ResetPassword.new(
-          password: '',
-          password_confirmation: 'example12345',
-          token: token
-        )
+        ::Form::ResetPassword.new(nil, password: '',
+                                       password_confirmation: 'example12345',
+                                       token: token)
       end
 
       it 'set reset_password_token to nil' do
@@ -43,11 +39,9 @@ describe Form::ResetPassword do
       let!(:user) { create :user }
       let!(:token) { retrieve_access_token(user) }
       let!(:form) do
-        ::Form::ResetPassword.new(
-          password: 'example12345',
-          password_confirmation: 'example12345',
-          token: token
-        )
+        ::Form::ResetPassword.new(nil, password: 'example12345',
+                                       password_confirmation: 'example12345',
+                                       token: token)
       end
 
       it 'set reset_password_token to nil' do
@@ -61,11 +55,9 @@ describe Form::ResetPassword do
       let!(:token) { retrieve_access_token(user) }
       before { user.update(reset_password_token: token) }
       let!(:form) do
-        ::Form::ResetPassword.new(
-          password: 'example12345',
-          password_confirmation: 'example12345',
-          token: token
-        )
+        ::Form::ResetPassword.new(nil, password: 'example12345',
+                                       password_confirmation: 'example12345',
+                                       token: token)
       end
 
       it 'set reset_password_token to nil' do
@@ -79,11 +71,9 @@ describe Form::ResetPassword do
       let!(:token) { retrieve_access_token(user) }
       before { user.update(reset_password_token: token) }
       let!(:form) do
-        ::Form::ResetPassword.new(
-          password: 'password',
-          password_confirmation: 'password',
-          token: '12345'
-        )
+        ::Form::ResetPassword.new(nil, password: 'password',
+                                       password_confirmation: 'password',
+                                       token: '12345')
       end
 
       it 'return token error' do

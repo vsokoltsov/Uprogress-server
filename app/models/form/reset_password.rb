@@ -6,14 +6,14 @@ class Form::ResetPassword < Form::Base
   attribute :token
 
   validates_confirmation_of :password, if: lambda { |m| m.password.present? }
-  with_options if: :decrypted_token? do |user|
+  with_options if: [:token_present?, :decrypted_token?] do |user|
     user.validate :token_expired?
     user.validate :password_equal_to_previous_password?
   end
 
-
-  def initialize(params = nil)
-    self.attributes = params
+  def initialize(object, params = nil)
+    @object = object
+    self.attributes = params || @object&.attributes
   end
 
   def reset
@@ -28,6 +28,10 @@ class Form::ResetPassword < Form::Base
   end
 
   private
+
+  def token_present?
+    token.present?
+  end
 
   def decrypted_token?
     begin

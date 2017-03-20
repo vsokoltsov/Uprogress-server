@@ -27,7 +27,7 @@ class Api::V1::SessionsController < Api::ApiController
   end
 
   def reset_password
-    form = Form::ResetPassword.new(params[:user]&.to_unsafe_hash)
+    form = Form::ResetPassword.new(nil, params[:user]&.to_unsafe_hash)
     if form.reset
       render json: { message: 'Password was succesfully updated' }
     else
