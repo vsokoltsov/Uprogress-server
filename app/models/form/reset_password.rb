@@ -6,13 +6,16 @@ class Form::ResetPassword < Form::Base
   attribute :token
 
   validates_confirmation_of :password, if: lambda { |m| m.password.present? }
+
   with_options if: [:token_present?, :decrypted_token?] do |user|
     user.validate :token_expired?
     user.validate :password_equal_to_previous_password?
   end
 
+  validate :user_present?, if: -> { token.blank? }
+
   def initialize(object, params = nil)
-    @object = object
+    @user = object
     self.attributes = params || @object&.attributes
   end
 
@@ -28,6 +31,12 @@ class Form::ResetPassword < Form::Base
   end
 
   private
+
+  def user_present?
+    unless user.present?
+      errors.add(:user, 'User is empty')
+    end
+  end
 
   def token_present?
     token.present?

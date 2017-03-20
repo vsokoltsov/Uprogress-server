@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :attachments, only: [:create]
       resources :users do
         get :statistics, on: :member
+        put :change_password
 
         resources :directions do
           resources :steps

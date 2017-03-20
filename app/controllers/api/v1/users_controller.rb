@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class Api::V1::UsersController < Api::ApiController
-  before_action :validate_token, only: :update
+  before_action :validate_token, only: [:update, :change_password]
   before_action :find_user
 
   def show
@@ -18,6 +18,15 @@ class Api::V1::UsersController < Api::ApiController
 
   def statistics
     render json: @user, serializer: StatisticsSerializer
+  end
+
+  def change_password
+    form = Form::ResetPassword(current_user, params[:user])
+    if form.reset
+      render json: form.object, serializer: CurrentUserSerializer
+    else
+      render json: { errors: form.errors }, status: :unprocessable_entity
+    end
   end
 
   private
