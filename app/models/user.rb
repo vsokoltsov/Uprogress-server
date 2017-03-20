@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
   def scope_object
     @scope_object ||= Scope::User.new(self)
   end
+
+  def self.decode_jwt_and_find(token)
+    find(JWT.decode(token, nil, false).first['id']) if token
+  end
 end

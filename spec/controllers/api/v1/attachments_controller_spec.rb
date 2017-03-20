@@ -5,7 +5,7 @@ describe Api::V1::AttachmentsController do
   let!(:auth) { create :authorization }
   let!(:file) do
     Rack::Test::UploadedFile.new(
-      File.join(Rails.root, 'spec', 'factories', 'easytest.png')
+      Rails.root.join('spec', 'factories', 'easytest.png')
     )
   end
 
