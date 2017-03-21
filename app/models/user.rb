@@ -12,6 +12,11 @@ class User < ActiveRecord::Base
   friendly_id :nick, use: [:finders]
 
   delegate :finished_directions, :new_directions, :in_progress_directions, to: :scope_object
+  delegate :send_notification, to: :push_object
+
+  def push_object
+    @push_object ||= Service::PushNotifications.new(self)
+  end
 
   def scope_object
     @scope_object ||= Scope::User.new(self)
