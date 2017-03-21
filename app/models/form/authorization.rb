@@ -15,7 +15,6 @@ class Form::Authorization < Form::Base
   def submit!
     object.assign_attributes(attributes)
     object.save!
-    binding.pry
     if attrs['device_token'].present?
       Device.create!(token: attrs[:device_token], authorization_id: object.id)
     end
