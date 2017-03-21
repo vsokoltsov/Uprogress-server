@@ -7,6 +7,8 @@ class Form::Authorization < Form::Base
   attribute :app_name
   attribute :app_version
 
+  scope :android_device_tokens, -> { includes(:device).where(platform: 'Android').map { |x| x.device.token } }
+
   def initialize(object, params = nil)
     @object = object
     self.attributes = @attrs = params || @object.attributes
