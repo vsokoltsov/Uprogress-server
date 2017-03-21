@@ -23,6 +23,7 @@ gem 'puma', '~> 3.0'
 gem 'rack-cors', require: 'rack/cors'
 gem 'redis-rails'
 gem 'request_store'
+gem 'rest-client'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sidekiq'
 gem 'tainbox'
