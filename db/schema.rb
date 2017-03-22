@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319184228) do
+ActiveRecord::Schema.define(version: 20170321083221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20170319184228) do
     t.index ["last_sign_in_at"], name: "index_authorizations_on_last_sign_in_at", using: :btree
     t.index ["provider"], name: "index_authorizations_on_provider", using: :btree
     t.index ["user_id"], name: "index_authorizations_on_user_id", using: :btree
+  end
+
+  create_table "devices", force: :cascade do |t|
+    t.integer  "authorization_id", null: false
+    t.text     "token",            null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["authorization_id"], name: "index_devices_on_authorization_id", using: :btree
   end
 
   create_table "directions", force: :cascade do |t|

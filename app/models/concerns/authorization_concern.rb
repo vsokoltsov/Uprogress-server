@@ -6,7 +6,7 @@ module AuthorizationConcern
                                  app_name: attr['app_name'],
                                  user_id: attr['user_id']) || Authorization.new
     form = Form::Authorization.new(auth, attr)
-    form.submit
+    form.submit!
     @auth = form.object
   end
 
