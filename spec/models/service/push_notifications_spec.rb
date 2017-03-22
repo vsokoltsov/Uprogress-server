@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe Service::PushNotifications do
-  let!(:authorization) { create :authorization }
+  let!(:authorization) { create :authorization, platform: 'Android' }
 
   describe '#send_notification' do
     context 'tokens are present' do
