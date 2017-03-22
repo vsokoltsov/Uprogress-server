@@ -48,4 +48,6 @@ group :test do
   gem 'json_spec'
   gem 'launchy'
   gem 'rspec-sidekiq'
+  gem 'vcr'
+  gem 'webmock'
 end

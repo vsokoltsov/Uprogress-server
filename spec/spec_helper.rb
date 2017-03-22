@@ -4,6 +4,12 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'json_spec'
 require 'database_cleaner'
+require 'vcr'
+
+VCR.configure do |config|
+  config.cassette_library_dir = 'vcr_cassettes'
+  config.hook_into :webmock
+end
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods

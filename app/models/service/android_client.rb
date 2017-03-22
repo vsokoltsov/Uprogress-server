@@ -25,7 +25,7 @@ class Service::AndroidClient
     }
   end
 
-  def body(devices_ids, title, body_message)
+  def body(devices_ids, body_message, title)
     {
       'registration_ids': devices_ids,
       'data': {
