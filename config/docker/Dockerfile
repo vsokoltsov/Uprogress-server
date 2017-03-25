@@ -25,6 +25,9 @@ RUN gem install bundler
 # Finish establishing our Ruby enviornment
 RUN bundle install
 
+ENV RAILS_ENV production
+ENV RACK_ENV production
+
 # Copy the Rails application into place
 COPY . .
 
