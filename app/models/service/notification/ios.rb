@@ -7,7 +7,7 @@ class Service::Notification::Ios < Service::Notification::Base
     @ios = Service::IosClient.new(ENV['IOS_CERTIFICATE_NAME'])
   end
 
-  def push_notification(devices_ids, message)
-    ios.send_request(devices_ids, message)
+  def push_notification(devices_ids, message, title = nil)
+    ios.send_request(devices_ids, message, title)
   end
 end

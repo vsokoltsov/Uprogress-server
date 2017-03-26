@@ -7,10 +7,14 @@ class Service::IosClient
     apn.certificate = File.read(Rails.root.join('config', 'certificates', file_name))
   end
 
-  def send_request(device_tokens, body)
+  def send_request(device_tokens, body, title = nil)
     device_tokens.each do |token|
       notification = Houston::Notification.new(device: token)
-      notification.alert = body
+      message = {}
+      message['body'] = body
+      message['title'] = title if title
+      notification.alert = message
+      notification.sound = 'sosumi.aiff'
       notification.content_available = true
       notification.mutable_content = true
       apn.push(notification)
