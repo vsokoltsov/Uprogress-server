@@ -8,6 +8,7 @@ class Service::PushNotifications
 
   def send_notification(message, title = nil)
     create_android_client!(message, title) if android_tokens.present?
+    create_ios_client!(message) if ios_tokens.present?
   end
 
   private
@@ -16,7 +17,15 @@ class Service::PushNotifications
     @android_tokens ||= user.authorizations.android_device_tokens
   end
 
+  def ios_tokens
+    @ios_tokens ||= user.authorizations.ios_device_tokens
+  end
+
   def create_android_client!(message, title = nil)
     ::Service::Notification::Android.new(user).push_notification(android_tokens, message, title)
+  end
+
+  def create_ios_client!(message)
+    ::Service::Notification::Ios.new(user).push_notification(ios_tokens, message)
   end
 end
