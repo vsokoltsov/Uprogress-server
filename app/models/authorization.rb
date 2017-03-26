@@ -3,8 +3,16 @@ class Authorization < ActiveRecord::Base
   belongs_to :user
   has_one :device
 
+  scope :device_tokens, lambda { |platform|
+    includes(:device).where(platform: platform).map { |x| x.device&.token }.compact
+  }
+
   scope :android_device_tokens, lambda {
-    includes(:device).where(platform: 'Android').select { |x| x.device&.token }
+    device_tokens('Android')
+  }
+
+  scope :ios_device_tokens, lambda {
+    device_tokens('iOS')
   }
 
   def self.decode_jwt_and_find(token)

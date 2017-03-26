@@ -71,6 +71,8 @@ GEM
     case_transform (0.2)
       activesupport
     coderay (1.1.1)
+    commander (4.4.3)
+      highline (~> 1.7.2)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
     crack (0.4.3)
@@ -93,6 +95,10 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashdiff (0.3.2)
+    highline (1.7.8)
+    houston (2.2.4)
+      commander (~> 4.4)
+      json
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.8.1)
@@ -308,6 +314,7 @@ DEPENDENCIES
   factory_girl_rails
   faker (~> 1.6.3)
   friendly_id
+  houston
   jbuilder (~> 2.0)
   json_spec
   jwt
