@@ -7,6 +7,7 @@ KEYS_FILE="keys.sh"
 START_SERVER="run_server.sh"
 USER="root"
 HOME_DIRECTORY="/root"
+SERTIFICATE_NAME="production_vsokoltsov.UProgress.pem"
 
 echo "DOCKER DEPLOY"
 
@@ -30,6 +31,7 @@ scp  "$(pwd)/config/docker/$KEYS_FILE" "$USER@$HOST_IP:$HOME_DIRECTORY/.env.prod
 
 # COPY START SERVER FILE
 scp  "$(pwd)/config/docker/$START_SERVER" "$USER@$HOST_IP:$HOME_DIRECTORY"
+scp  "$(pwd)/config/certificates/$SERTIFICATE_NAME" "$USER@$HOST_IP:$HOME_DIRECTORY/config/certificates"
 
 #CONNECT_TO SSH AND RUN SCRIPT
 ssh "$USER@$HOST_IP" 'bash -s' < "$(pwd)/config/docker/$DOCKER_CONFIG_SCRIPT"

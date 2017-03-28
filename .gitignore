@@ -18,3 +18,5 @@ config/local_env.yml
 config/docker/keys.sh
 public/uploads
 log/*
+.DC_Store
+config/certificates
