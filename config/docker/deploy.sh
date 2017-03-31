@@ -12,22 +12,29 @@ SERTIFICATE_NAME="production_vsokoltsov.UProgress.pem"
 echo "DOCKER DEPLOY"
 
 # BUILD NEW IMAGE
-docker build -t "$DOCKER_IMAGE:latest" -f "$(pwd)/config/docker/Dockerfile" .
+echo $(pwd)
+docker build -t "$DOCKER_IMAGE:latest" -f "$(pwd)/config/docker/Dockerfile" "$(pwd)"
 
 #PUSH TO DOCKER HUB
 docker push "$DOCKER_IMAGE:latest"
 
+ssh "$USER@$HOST_IP" "rm $HOME_DIRECTORY/Dockerfile"
+ssh "$USER@$HOST_IP" "rm $HOME_DIRECTORY/docker-compose.yml"
+ssh "$USER@$HOST_IP" "rm $HOME_DIRECTORY/.env.production"
+ssh "$USER@$HOST_IP" "rm $HOME_DIRECTORY/keys.sh"
+ssh "$USER@$HOST_IP" "rm $HOME_DIRECTORY/run_server.sh"
+
 #COPY docker_compose file
 scp "$(pwd)/docker-compose.production.yml" "$USER@$HOST_IP:$HOME_DIRECTORY"
-
+scp "$(pwd)/config/docker/Dockerfile" "$USER@$HOST_IP:$HOME_DIRECTORY"
 #COPY KEYS FILE TO REMOTE SERVER
 if [ ! -f "$(pwd)/config/docker/$KEYS_FILE" ]; then
     echo "File keys.sh doesn't found. Pleas create it and put keys right into it."
     exit 1
 else
-  scp  "$(pwd)/config/docker/$KEYS_FILE" "$USER@$HOST_IP:$HOME_DIRECTORY"
+  echo "COPY KEYS"
+  scp  "$(pwd)/config/docker/$KEYS_FILE" "$USER@$HOST_IP:$HOME_DIRECTORY/.env.production"
 fi
-scp  "$(pwd)/config/docker/$KEYS_FILE" "$USER@$HOST_IP:$HOME_DIRECTORY/.env.production"
 
 # COPY START SERVER FILE
 scp  "$(pwd)/config/docker/$START_SERVER" "$USER@$HOST_IP:$HOME_DIRECTORY"

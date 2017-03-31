@@ -1,17 +1,49 @@
 version: '2'
 services:
+
+  box:
+    image: busybox
+    volumes:
+      - /box
+
   app:
     image: vsokoltsov/uprogress
     build: .
     command: bash -l -c '/var/www/docker_example/config/docker/run_server.sh'
-    env_file:
-      - /root/.env.production
-
     links:
       - db
-
+      - redis
+      - sidekiq
+    env_file:
+      - /root/.env.production
+    volumes:
+      - /var/www/docker_example/*:/test
+    volumes_from:
+      - box
     ports:
       - "80:3000"
+
+  redis:
+    image: redis
+    command: redis-server
+    ports:
+      - '6379:6379'
+    volumes_from:
+      - box
+
+  sidekiq:
+    depends_on:
+      - 'db'
+      - 'redis'
+    build: .
+    command: bundle exec sidekiq
+    volumes:
+      - .:/test
+    links:
+      - db
+      - redis
+    volumes_from:
+      - box
 
   db:
     image: postgres:9.4.5
@@ -20,4 +52,5 @@ services:
     volumes:
       - postgres:/var/lib/postgres
 volumes:
+  box:
   postgres:

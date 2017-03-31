@@ -29,7 +29,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sidekiq'
 gem 'tainbox'
 gem 'translit'
-gem 'unicorn'
 gem 'with_advisory_lock'
 
 group :development, :test do
