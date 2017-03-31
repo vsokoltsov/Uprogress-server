@@ -4,7 +4,7 @@ services:
   box:
     image: busybox
     volumes:
-      - /box
+      - .:/box
 
   app:
     image: vsokoltsov/uprogress
@@ -17,9 +17,9 @@ services:
     env_file:
       - /root/.env.production
     volumes:
-      - /var/www/docker_example/*:/test
+      - source:/var/www/docker_example/
     volumes_from:
-      - box
+      - box:rw
     ports:
       - "80:3000"
 
@@ -38,12 +38,12 @@ services:
     build: .
     command: bundle exec sidekiq
     volumes:
-      - .:/test
+      - source:/rails
     links:
       - db
       - redis
     volumes_from:
-      - box
+      - box:rw
 
   db:
     image: postgres:9.4.5
@@ -52,5 +52,6 @@ services:
     volumes:
       - postgres:/var/lib/postgres
 volumes:
+  source:
   box:
   postgres:
