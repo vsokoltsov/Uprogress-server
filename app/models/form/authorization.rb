@@ -16,6 +16,7 @@ class Form::Authorization < Form::Base
     object.assign_attributes(attributes)
     object.save!
     if attrs['device_token'].present?
+      object.device.destroy! if object.device.present?
       Device.create!(token: attrs[:device_token], authorization_id: object.id)
     end
   end
