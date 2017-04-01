@@ -4,7 +4,8 @@ services:
   box:
     image: busybox
     volumes:
-      - .:/box
+      - /box
+      - /usr/local/bundle
 
   app:
     image: vsokoltsov/uprogress
@@ -36,9 +37,11 @@ services:
       - 'db'
       - 'redis'
     build: .
-    command: bundle exec sidekiq
+    command: bash -c 'cd /rails && bundle && bundle exec sidekiq'
     volumes:
       - source:/rails
+    environment:
+      REDIS_HOST: redis
     links:
       - db
       - redis

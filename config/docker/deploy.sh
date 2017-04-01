@@ -18,11 +18,11 @@ docker build -t "$DOCKER_IMAGE:latest" -f "$(pwd)/config/docker/Dockerfile" "$(p
 #PUSH TO DOCKER HUB
 docker push "$DOCKER_IMAGE:latest"
 
-ssh "$USER@$HOST_IP" "rm $HOME_DIRECTORY/Dockerfile"
-ssh "$USER@$HOST_IP" "rm $HOME_DIRECTORY/docker-compose.yml"
-ssh "$USER@$HOST_IP" "rm $HOME_DIRECTORY/.env.production"
-ssh "$USER@$HOST_IP" "rm $HOME_DIRECTORY/keys.sh"
-ssh "$USER@$HOST_IP" "rm $HOME_DIRECTORY/run_server.sh"
+ssh "$USER@$HOST_IP" "rm -f $HOME_DIRECTORY/Dockerfile"
+ssh "$USER@$HOST_IP" "rm -f $HOME_DIRECTORY/docker-compose.yml"
+ssh "$USER@$HOST_IP" "rm -f $HOME_DIRECTORY/.env.production"
+ssh "$USER@$HOST_IP" "rm -f $HOME_DIRECTORY/keys.sh"
+ssh "$USER@$HOST_IP" "rm -f $HOME_DIRECTORY/run_server.sh"
 
 #COPY docker_compose file
 scp "$(pwd)/docker-compose.production.yml" "$USER@$HOST_IP:$HOME_DIRECTORY"

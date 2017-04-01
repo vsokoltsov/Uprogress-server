@@ -22,9 +22,9 @@ WORKDIR $RAILS_ROOT
 #
 # ONBUILD COPY Gemfile.lock Gemfile.lock
 
-ONBUILD COPY Gemfile /box/Gemfile
+ONBUILD COPY Gemfile Gemfile
 
-ONBUILD COPY Gemfile.lock /box/Gemfile.lock
+ONBUILD COPY Gemfile.lock Gemfile.lock
 
 # Finish establishing our Ruby enviornment
 ONBUILD RUN bundle install

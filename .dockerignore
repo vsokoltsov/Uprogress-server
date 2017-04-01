@@ -3,4 +3,5 @@
 .dockerignore
 tmp/*
 config/docker/keys.sh
+config/local_env.yml
 log/*
