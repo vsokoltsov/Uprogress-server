@@ -2,7 +2,7 @@
 
 # IMPORT KEYS
 echo "IMPORT KEYS"
-source "/root/keys.sh"
+source "/root/.env"
 export RAILS_ENV="production"
 export S3_BUCKET=$S3_BUCKET
 export S3_KEY=$S3_KEY
@@ -12,15 +12,22 @@ export JWT_SECRET=$JWT_SECRET
 # RENAME docker-compose.yml file
 mv docker-compose.production.yml docker-compose.yml
 
-# PULL LATEST IMAGE
-docker-compose pull
+# delete existing image
+echo "REMOVE EXISTED IMAGE"
+docker system prune -f
+docker rmi -f vsokoltsov/uprogress:production
+# docker-compose rm -f
 
+# PULL LATEST IMAGE
+docker pull vsokoltsov/uprogress:production
 #CHECK IF CONTAINER RUNNING
 running_docker="$(docker ps | grep vsokoltsov/uprogres)"
 if [ $running_docker == ""]
 then
+  echo "BUILD"
+  docker-compose build
   echo "RUN"
-  docker-compose up -d
+  docker-compose up
 else
   echo "RESTART"
   docker-compose restart

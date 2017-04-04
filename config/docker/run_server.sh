@@ -1,5 +1,6 @@
-rake db:create
-rake db:migrate
+./bin/bundle
+./bin/bundle exec rake db:create
+./bin/bundle exec rake db:migrate
 ./bin/bundle exec rake tmp:clear
 if [ -f "/var/www/docker_example/tmp/pids/server.pid" ]; then
   echo "DELETE SERVER_PID"

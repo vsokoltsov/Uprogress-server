@@ -12,11 +12,11 @@ SERTIFICATE_NAME="production_vsokoltsov.UProgress.pem"
 echo "DOCKER DEPLOY"
 
 # BUILD NEW IMAGE
-echo $(pwd)
-docker build -t "$DOCKER_IMAGE:latest" -f "$(pwd)/config/docker/Dockerfile" "$(pwd)"
+docker rmi -f "$DOCKER_IMAGE"
+docker build -t "$DOCKER_IMAGE:production" -f "$(pwd)/config/docker/Dockerfile" "$(pwd)"
 
 #PUSH TO DOCKER HUB
-docker push "$DOCKER_IMAGE:latest"
+docker push "$DOCKER_IMAGE:production"
 
 ssh "$USER@$HOST_IP" "rm -f $HOME_DIRECTORY/Dockerfile"
 ssh "$USER@$HOST_IP" "rm -f $HOME_DIRECTORY/docker-compose.yml"
