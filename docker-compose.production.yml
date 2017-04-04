@@ -1,6 +1,5 @@
 version: '2'
 services:
-
   box:
     image: busybox
     volumes:
@@ -8,15 +7,14 @@ services:
       - /usr/local/bundle
 
   app:
-    image: vsokoltsov/uprogress
-    build: .
+    image: vsokoltsov/uprogress:production
     command: bash -l -c '/var/www/docker_example/config/docker/run_server.sh'
     links:
       - db
       - redis
       - sidekiq
     env_file:
-      - /root/.env.production
+      - ./.env
     volumes:
       - source:/var/www/docker_example/
     volumes_from:
@@ -33,10 +31,10 @@ services:
       - box
 
   sidekiq:
+    build: .
     depends_on:
       - 'db'
       - 'redis'
-    build: .
     command: bash -c 'cd /rails && bundle && bundle exec sidekiq'
     volumes:
       - source:/rails
