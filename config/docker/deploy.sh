@@ -12,8 +12,8 @@ SERTIFICATE_NAME="production_vsokoltsov.UProgress.pem"
 echo "DOCKER DEPLOY"
 
 # BUILD NEW IMAGE
-docker rmi -f "$DOCKER_IMAGE"
-docker build -t "$DOCKER_IMAGE:production" -f "$(pwd)/config/docker/Dockerfile" "$(pwd)"
+docker rmi -f "$DOCKER_IMAGE:production"
+docker build -t "$DOCKER_IMAGE:production" -f "$(pwd)/config/docker/Dockerfile" .
 
 #PUSH TO DOCKER HUB
 docker push "$DOCKER_IMAGE:production"

@@ -27,7 +27,7 @@ ONBUILD COPY Gemfile Gemfile
 ONBUILD COPY Gemfile.lock Gemfile.lock
 
 # Finish establishing our Ruby enviornment
-ONBUILD RUN bundle install
+ONBUILD RUN bundle install --deployment
 
 ENV RAILS_ENV production
 ENV RACK_ENV production
