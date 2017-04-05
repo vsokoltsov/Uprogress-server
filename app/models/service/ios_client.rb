@@ -3,7 +3,8 @@ class Service::IosClient
   attr_accessor :apn
 
   def initialize(file_name)
-    @apn = Houston::Client.send(ENV['RAILS_ENV'].to_sym)
+    correct_env = ENV['RAILS_ENV'] == 'test' ? 'development' : ENV['RAILS_ENV']
+    @apn = Houston::Client.send(correct_env.to_sym)
     apn.certificate = File.read(Rails.root.join('config', 'certificates', file_name))
   end
 
