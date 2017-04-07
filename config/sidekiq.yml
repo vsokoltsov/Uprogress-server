@@ -1,0 +1,4 @@
+:schedule:
+  appointment:
+    every: 1m
+    class: AppointmentWorker
