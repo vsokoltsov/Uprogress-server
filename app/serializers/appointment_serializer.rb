@@ -2,5 +2,5 @@
 class AppointmentSerializer < ActiveModel::Serializer
   attributes :id, :message, :date, :created_at
 
-  has_one :dirrection, serializer: DirectionSerializer
+  has_one :direction, serializer: DirectionSerializer
 end
