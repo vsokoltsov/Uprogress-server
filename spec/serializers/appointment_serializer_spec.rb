@@ -40,6 +40,10 @@ describe AppointmentSerializer do
           it "contains #{attr}" do
             expect(object['direction']).to have_key(attr)
           end
+
+          it "serializer #{attr} value equal to object #{attr} value" do
+            expect(object[attr]).to eq(direction.send(attr.to_sym))
+          end
         end
       end
     end
