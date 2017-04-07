@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321083221) do
+ActiveRecord::Schema.define(version: 20170407145835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer  "direction_id", null: false
+    t.datetime "date",         null: false
+    t.integer  "repeats",      null: false
+    t.text     "message"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["direction_id"], name: "index_appointments_on_direction_id", using: :btree
+    t.index ["repeats"], name: "index_appointments_on_repeats", using: :btree
+  end
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id"
