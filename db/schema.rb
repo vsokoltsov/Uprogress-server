@@ -16,12 +16,14 @@ ActiveRecord::Schema.define(version: 20170407145835) do
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.integer  "direction_id", null: false
-    t.datetime "date",         null: false
-    t.integer  "repeats",      null: false
+    t.integer  "direction_id",                null: false
+    t.datetime "date",                        null: false
+    t.integer  "repeats",                     null: false
     t.text     "message"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.boolean  "available",    default: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["available"], name: "index_appointments_on_available", using: :btree
     t.index ["direction_id"], name: "index_appointments_on_direction_id", using: :btree
     t.index ["repeats"], name: "index_appointments_on_repeats", using: :btree
   end

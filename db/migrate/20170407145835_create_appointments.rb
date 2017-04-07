@@ -6,6 +6,7 @@ class CreateAppointments < ActiveRecord::Migration[5.0]
       t.datetime :date, null: false
       t.integer :repeats, null: false, index: true
       t.text :message
+      t.boolean :available, index: true, default: true
       t.timestamps
     end
   end

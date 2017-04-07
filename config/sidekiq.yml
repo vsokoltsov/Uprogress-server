@@ -1,4 +1,6 @@
 :schedule:
   appointment:
-    every: 1m
+    cron: '* * * * *'
     class: AppointmentWorker
+
+:dynamic: true

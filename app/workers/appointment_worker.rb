@@ -3,6 +3,6 @@ class AppointmentWorker
   include Sidekiq::Worker
 
   def perform(*_args)
-    UserMailer.restore_password(User.last, '1111').deliver_now
+    Service::NotificationTransmitter.new.send_appointments
   end
 end
