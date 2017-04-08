@@ -6,7 +6,7 @@ class Service::Appointment::Base
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  validate :appointment_active?
+  validate :appointment_available?
 
   def initialize(appointment)
     @appointment = appointment
@@ -38,7 +38,7 @@ class Service::Appointment::Base
     message
   end
 
-  def appointment_active?
-    appointment.active?
+  def appointment_available?
+    appointment.available?
   end
 end
