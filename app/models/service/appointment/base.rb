@@ -7,6 +7,7 @@ class Service::Appointment::Base
   extend ActiveModel::Naming
 
   validate :appointment_available?
+  validate :start_date_valid?
 
   def initialize(appointment)
     @appointment = appointment
@@ -40,5 +41,9 @@ class Service::Appointment::Base
 
   def appointment_available?
     appointment.available?
+  end
+
+  def start_date_valid?
+    appointment.start_date_valid?
   end
 end

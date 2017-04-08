@@ -26,17 +26,34 @@ describe Service::Appointment::EveryDay do
     end
 
     context 'with invalid attributes' do
-      let!(:appointment) do
-        create :appointment, direction_id: direction.id, available: false
+      context 'appointment is not available' do
+        let!(:appointment) do
+          create :appointment, direction_id: direction.id, available: false
+        end
+        let!(:appointment_service) { Service::Appointment::EveryDay.new(appointment) }
+
+        it 'send notification does not called' do
+          expect_any_instance_of(
+            ::Service::PushNotifications
+          ).to receive(:send_notification).with(any_args).and_return(false)
+
+          appointment_service.send_notification
+        end
       end
-      let!(:appointment_service) { Service::Appointment::EveryDay.new(appointment) }
 
-      it 'send notification does not called' do
-        expect_any_instance_of(
-          ::Service::PushNotifications
-        ).to receive(:send_notification).with(any_args).and_return(false)
+      context 'start date is not today' do
+        let!(:appointment) do
+          create :appointment, direction_id: direction.id, date: Time.zone.now + 1.week
+        end
+        let!(:appointment_service) { Service::Appointment::EveryDay.new(appointment) }
 
-        appointment_service.send_notification
+        it 'send notification does not called' do
+          expect_any_instance_of(
+            ::Service::PushNotifications
+          ).to receive(:send_notification).with(any_args).and_return(false)
+
+          appointment_service.send_notification
+        end
       end
     end
   end
