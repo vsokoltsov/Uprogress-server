@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class Service::NotificationTransmitter
   def send_appointments
-    appointmets_scope.each do |appointment|
+    appointments_scope.each do |appointment|
       klass = appointment.repeats_to_class_name
       appointment_sender = "Service::Appointment::#{klass}".constantize
                                                            .new(appointment)
