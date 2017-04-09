@@ -14,9 +14,12 @@ class Form::Appointment < Form::Base
   private
 
   def past_time?
-    binding.pry
-    if Time.zone.now >= date.to_datetime
-      errors.add(:date, 'Cannot be in the past')
+    if date.present?
+      now = Time.zone.now
+      local = now.getlocal(date.to_datetime.zone)
+      if local >= date.to_datetime
+        errors.add(:date, 'Cannot be in the past')
+      end
     end
   end
 end
