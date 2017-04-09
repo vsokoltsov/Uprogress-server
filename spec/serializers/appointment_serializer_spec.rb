@@ -42,7 +42,7 @@ describe AppointmentSerializer do
           end
 
           it "serializer #{attr} value equal to object #{attr} value" do
-            expect(object[attr]).to eq(direction.send(attr.to_sym))
+            expect(object['direction'][attr]).to eq(direction.send(attr.to_sym))
           end
         end
       end
