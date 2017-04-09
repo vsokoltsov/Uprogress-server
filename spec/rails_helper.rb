@@ -5,6 +5,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'utils/request_helper'
 require 'utils/session_helper'
+require 'sidekiq/testing'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|

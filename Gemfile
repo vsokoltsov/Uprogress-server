@@ -27,6 +27,7 @@ gem 'request_store'
 gem 'rest-client'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
 gem 'tainbox'
 gem 'translit'
 gem 'with_advisory_lock'

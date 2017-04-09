@@ -1,0 +1,6 @@
+:schedule:
+  appointment:
+    cron: '* * * * *'
+    class: AppointmentWorker
+
+:dynamic: true

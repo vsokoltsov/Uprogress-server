@@ -3,6 +3,7 @@ class Direction < ActiveRecord::Base
   extend FriendlyId
   belongs_to :user
   has_many :steps
+  has_many :appointments
 
   friendly_id :slug, use: :finders
 

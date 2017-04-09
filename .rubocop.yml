@@ -3,6 +3,7 @@ AllCops:
   Exclude:
     - 'db/schema.rb'
     - 'app/models/form/**/*'
+    - 'config/routes.rb'
 
 Rails:
   Enabled: true
