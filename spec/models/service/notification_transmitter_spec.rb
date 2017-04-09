@@ -21,7 +21,22 @@ describe Service::NotificationTransmitter do
     end
   end
 
-  context 'appointments at the same time' do
+  context 'appointments at the same time but different date' do
+    let!(:appointment1) do
+      create :appointment, direction_id: direction.id, date: Time.zone.now
+    end
+    let!(:appointment2) do
+      create :appointment, direction_id: direction.id, date: Time.zone.now + 1.week
+    end
+    let!(:transmitter) { Service::NotificationTransmitter.new }
 
+    it 'receives #send_notification for Service::Appointment class exactly 2 times' do
+      count = 0
+
+      Service::Appointment::Never.any_instance.stub(:send_notification) { count += 1 }
+      transmitter.send_appointments
+
+      expect(count).to eq(2)
+    end
   end
 end
