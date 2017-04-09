@@ -14,7 +14,7 @@ class Service::NotificationTransmitter
   def appointments_scope
     time_from = (Time.zone.now - 5.minutes).strftime('%H:%M:%S %z')
     time_to = (Time.zone.now + 5.minutes).strftime('%H:%M:%S %z')
-    Appointment.where('date::time >= ? and date::time <= ? and available=true',
-                      time_from, time_to)
+    ::Appointment.where('date::time >= ? and date::time <= ? and available=true',
+                        time_from, time_to)
   end
 end
