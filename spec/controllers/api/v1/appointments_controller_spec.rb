@@ -4,6 +4,7 @@ require 'rails_helper'
 describe Api::V1::AppointmentsController do
   let!(:auth) { create :authorization }
   let!(:direction) { create :direction }
+  let!(:appointment) { create :appointment, direction_id: direction.id }
   let!(:attributes) do
     {
       direction_id: direction.id,
@@ -32,7 +33,6 @@ describe Api::V1::AppointmentsController do
   end
 
   describe 'PUT #update' do
-    let!(:appointment) { create :appointment, direction_id: direction.id }
     let!(:attrs) do
       hash = appointment.attributes
       hash['message'] = 'AAA'
@@ -53,6 +53,14 @@ describe Api::V1::AppointmentsController do
         appointment.reload
         expect(appointment.message).to eq appointment.message
       end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'deletes appointment' do
+      expect do
+        delete_with_token auth, :destroy, id: appointment.id
+      end.to change(Appointment, :count).by(-1)
     end
   end
 end
