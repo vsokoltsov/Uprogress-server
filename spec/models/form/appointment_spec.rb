@@ -7,7 +7,7 @@ describe Form::Appointment do
     {
       direction_id: direction.id,
       message: 'Test',
-      date: '2017-04-06 12:00:00',
+      date: (Time.zone.now + 1.day).strftime('%Y-%m-%d %H:%M:%S'),
       repeats: 1
     }
   end
