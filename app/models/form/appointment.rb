@@ -3,6 +3,7 @@ class Form::Appointment < Form::Base
   attribute :date
   attribute :repeats
   attribute :message
+  attribute :available
 
   validates :direction_id, :date, :repeats, presence: true
   validate :past_time?

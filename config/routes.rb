@@ -14,7 +14,7 @@ Rails.application.routes.draw do
         end
       end
       resources :attachments, only: [:create]
-      resources :appointments, only: [:create]
+      resources :appointments
       resources :devices, only: [:create]
       resources :users do
         member do
