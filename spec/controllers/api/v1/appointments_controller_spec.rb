@@ -30,4 +30,29 @@ describe Api::V1::AppointmentsController do
       end
     end
   end
+
+  describe 'PUT #update' do
+    let!(:appointment) { create :appointment, direction_id: direction.id }
+    let!(:attrs) do
+      hash = appointment.attributes
+      hash['message'] = 'AAA'
+      hash
+    end
+
+    context 'with valid attributes' do
+      it 'updates appointment' do
+        put_with_token auth, :update, id: appointment.id, appointment: attrs
+        appointment.reload
+        expect(appointment.message).to eq 'AAA'
+      end
+    end
+
+    context 'with invalid attributes' do
+      it 'does not update appointment' do
+        put_with_token auth, :update, id: appointment.id, appointment: {}
+        appointment.reload
+        expect(appointment.message).to eq appointment.message
+      end
+    end
+  end
 end
