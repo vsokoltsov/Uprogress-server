@@ -9,7 +9,7 @@ describe Api::V1::AppointmentsController do
     {
       direction_id: direction.id,
       message: 'Test',
-      date: '2017-04-06 12:00:00',
+      date: (Time.zone.now + 1.day).strftime('%Y-%m-%d %H:%M:%S'),
       repeats: 'never'
     }
   end
