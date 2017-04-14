@@ -20,7 +20,7 @@ describe AppointmentSerializer do
   describe 'attributes' do
     let!(:object) { subject[root_key] }
 
-    %w(id message).each do |attr|
+    %w(id message repeats available).each do |attr|
       it "contains #{attr}" do
         expect(object).to have_key(attr)
       end
