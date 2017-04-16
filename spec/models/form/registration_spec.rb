@@ -29,10 +29,28 @@ describe Form::Registration do
           form.submit
         end.to change(User, :count).by(1)
       end
+
+      it 'creates NotificationSetting for new user' do
+        expect do
+          form.submit
+        end.to change(NotificationSetting, :count).by(1)
+      end
     end
 
     context 'with invalid attributes' do
       let!(:form) { ::Form::Registration.new(User.new, {}) }
+
+      it 'does not creates a new user' do
+        expect do
+          form.submit
+        end.to change(User, :count).by(0)
+      end
+
+      it 'does not creates NotificationSetting for new user' do
+        expect do
+          form.submit
+        end.to change(NotificationSetting, :count).by(0)
+      end
 
       context 'error message' do
 

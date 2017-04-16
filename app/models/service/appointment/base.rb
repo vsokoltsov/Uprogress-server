@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class Service::Appointment::Base
-  attr_accessor :user, :direction, :appointment
+  attr_accessor :user, :direction, :appointment, :notification_setting
 
   include ActiveModel::Validations
   include ActiveModel::Conversion
@@ -13,12 +13,15 @@ class Service::Appointment::Base
     @appointment = appointment
     @direction = appointment.direction
     @user = direction.user
+    @notification_setting = @user.notification_setting
   end
 
   def send_notification
     return unless valid?
     message = prepare_text
-    user.send_notification(message[:body], message[:title])
+    if notification_setting.push_enabled?
+      user.send_notification(message[:body], message[:title])
+    end
     yield if block_given?
   end
 

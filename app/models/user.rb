@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :authorizations
   has_many :directions, dependent: :destroy
   has_one :attachment, as: :attachable, dependent: :destroy
+  has_one :notification_setting
   has_many :system_logs, dependent: :destroy
 
   has_secure_password
