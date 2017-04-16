@@ -36,6 +36,7 @@ class Form::Registration < Form::Base
       super do
         auth = build_authorizaiton(authorization, object)
         self.token = generate_token_for_auth(auth)
+        NotificationSetting.create!(user: object)
         true
       end
     rescue ActiveRecord::RecordNotUnique => e
