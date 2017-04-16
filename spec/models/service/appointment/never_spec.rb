@@ -4,6 +4,7 @@ require 'rails_helper'
 describe Service::Appointment::Never do
   let!(:user) { create :user }
   let!(:direction) { create :direction, user_id: user.id }
+  let!(:notification_setting) { create :notification_setting, user_id: user.id }
 
   describe 'send_notification' do
     context 'with valid attributes' do

@@ -4,6 +4,7 @@ require 'rails_helper'
 describe Service::NotificationTransmitter do
   let!(:user) { create :user }
   let!(:direction) { create :direction, user_id: user.id }
+  let!(:notification_setting) { create :notification_setting, user_id: user.id }
 
   context 'available appointments' do
     let!(:appointment1) { create :appointment, direction_id: direction.id }

@@ -3,6 +3,7 @@ require 'rails_helper'
 
 describe Service::Appointment::EveryDay do
   let!(:user) { create :user }
+  let!(:notification_setting) { create :notification_setting, user_id: user.id }
   let!(:direction) { create :direction, user_id: user.id }
 
   describe 'send_notification' do
