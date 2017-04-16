@@ -61,6 +61,22 @@ describe Service::Appointment::Never do
           appointment_service.send_notification
         end
       end
+
+      context 'notification_setting for push is disabled' do
+        let!(:notification_setting) do
+          create :notification_setting, user_id: user.id, push_enabled: false
+        end
+        let!(:appointment) { create :appointment, direction_id: direction.id }
+        let!(:appointment_service) { Service::Appointment::EveryDay.new(appointment) }
+
+        it 'send notification does not called' do
+          expect_any_instance_of(
+            ::Service::PushNotifications
+          ).not_to receive(:send_notification).with(any_args)
+
+          appointment_service.send_notification
+        end
+      end
     end
   end
 end
