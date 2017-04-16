@@ -1,6 +1,6 @@
 class Form::NotificationSetting < Form::Base
-  attribute :push_enabled
-  attribute :mail_enabled
+  attribute :push_enabled, :Boolean
+  attribute :mail_enabled, :Boolean
 
-  validates :push_enabled, :mail_enabled, inclusion: { in: [true, false] }
+  validates :push_enabled, :mail_enabled, inclusion: { in: [ true, false ] }
 end
