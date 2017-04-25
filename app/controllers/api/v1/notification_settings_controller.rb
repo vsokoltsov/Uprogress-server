@@ -2,6 +2,11 @@
 class Api::V1::NotificationSettingsController < Api::ApiController
   before_action :validate_token
 
+  def index
+    notification_setting = current_user.notification_setting
+    render json: { setting: notification_setting }
+  end
+
   def update
     form = Form::NotificationSetting.new(
       current_user.notification_setting,

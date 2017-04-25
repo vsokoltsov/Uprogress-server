@@ -26,7 +26,7 @@ Rails.application.routes.draw do
           resources :steps
         end
 
-        resources :notification_settings, only: :update
+        resources :notification_settings, only: [:update, :index]
       end
       resources :authorizations, only: [:index, :destroy]
     end
