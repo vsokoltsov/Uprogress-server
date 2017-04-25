@@ -5,6 +5,24 @@ describe Api::V1::NotificationSettingsController do
   let!(:auth) { create :authorization }
   let!(:setting) { create :notification_setting, user_id: auth.user.id }
 
+  describe 'GET #index' do
+    it 'respond with user notification setting' do
+      get_with_token auth, :index, user_id: auth.user.id
+      expect(response.status).to eq 200
+    end
+
+    context 'success' do
+      before { get_with_token auth, :index, user_id: auth.user.id }
+
+      %w(id user_id push_enabled mail_enabled).each do |attr|
+        it "success response contains #{attr} attribute" do
+          expect(response.body).to be_json_eql(setting.send(attr.to_sym).to_json)
+            .at_path("setting/#{attr}")
+        end
+      end
+    end
+  end
+
   describe 'PUT #update' do
     context 'with valid attributes' do
       let!(:attrs) do
