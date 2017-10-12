@@ -1,6 +1,7 @@
 # frozen_string_literal: true
+
 class Api::V1::UsersController < Api::ApiController
-  before_action :validate_token, only: [:update, :change_password]
+  before_action :validate_token, only: %i[update change_password]
   before_action :find_user, except: :change_password
 
   def show

@@ -1,9 +1,10 @@
 # frozen_string_literal: true
-class Direction < ActiveRecord::Base
+
+class Direction < ApplicationRecord
   extend FriendlyId
   belongs_to :user
-  has_many :steps
-  has_many :appointments
+  has_many :steps, dependent: :destroy
+  has_many :appointments, dependent: :destroy
 
   friendly_id :slug, use: :finders
 

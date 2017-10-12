@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Form::Registration do
@@ -56,7 +57,7 @@ describe Form::Registration do
 
         before { form.submit }
 
-        %w(email password nick authorization).each do |attr|
+        %w[email password nick authorization].each do |attr|
           it "error message contain #{attr} key" do
             expect(form.errors.messages).to have_key(attr.to_sym)
           end

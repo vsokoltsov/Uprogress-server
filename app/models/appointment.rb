@@ -1,8 +1,9 @@
 # frozen_string_literal: true
-class Appointment < ActiveRecord::Base
+
+class Appointment < ApplicationRecord
   belongs_to :direction
 
-  enum repeats: [:never, :every_day]
+  enum repeats: %i[never every_day]
 
   def start_date_valid?
     Time.zone.today >= date.to_date

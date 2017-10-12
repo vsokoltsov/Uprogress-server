@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Form::Appointment do
@@ -31,7 +32,7 @@ describe Form::Appointment do
       context 'errors' do
         before { form.submit }
 
-        %w(direction_id repeats date).each do |attr|
+        %w[direction_id repeats date].each do |attr|
           it "contains #{attr} key" do
             expect(form.errors.messages).to have_key(attr.to_sym)
           end

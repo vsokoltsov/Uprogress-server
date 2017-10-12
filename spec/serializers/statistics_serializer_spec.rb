@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe StatisticsSerializer do
@@ -17,7 +18,7 @@ describe StatisticsSerializer do
   describe 'attributes' do
     let!(:object) { subject[root_key] }
 
-    %w(directions steps directions_steps).each do |attr|
+    %w[directions steps directions_steps].each do |attr|
       it "contains #{attr}" do
         expect(object).to have_key(attr)
       end

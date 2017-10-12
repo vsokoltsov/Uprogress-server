@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe StepUserSerializer do
@@ -19,7 +20,7 @@ describe StepUserSerializer do
   describe 'attributes' do
     let!(:object) { subject[root_key] }
 
-    %w(id first_name last_name location description nick).each do |attr|
+    %w[id first_name last_name location description nick].each do |attr|
       it "contains #{attr}" do
         expect(object).to have_key(attr)
       end

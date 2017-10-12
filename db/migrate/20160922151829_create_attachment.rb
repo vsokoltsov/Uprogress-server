@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class CreateAttachment < ActiveRecord::Migration
   def change
     create_table :attachments do |t|

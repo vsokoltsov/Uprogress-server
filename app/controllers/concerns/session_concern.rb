@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 module SessionConcern
   TOKEN_NAME = 'uprogresstoken'
   LOCALE_NAME = 'locale'
-  LOGGED_REQUESTS = %w(POST PUT DELETE).freeze
+  LOGGED_REQUESTS = %w[POST PUT DELETE].freeze
 
   attr_writer :auth_token, :current_user, :current_authorization
 
@@ -19,7 +20,9 @@ module SessionConcern
   end
 
   def current_authorization
-    @current_authorization ||= Authorization.decode_jwt_and_find(auth_token) rescue nil
+    @current_authorization ||= Authorization.decode_jwt_and_find(auth_token)
+  rescue JWT::DecodeError
+    nil
   end
 
   def signed_in?

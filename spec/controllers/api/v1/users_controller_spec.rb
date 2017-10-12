@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Api::V1::UsersController do
@@ -15,9 +16,9 @@ describe Api::V1::UsersController do
     before { get :show, params: { id: auth.user.nick } }
 
     context 'success response' do
-      %w(id first_name last_name location
+      %w[id first_name last_name location
          nick description attachment directions
-         finished_directions new_directions).each do |attr|
+         finished_directions new_directions].each do |attr|
            it "contains #{attr} attribute" do
              expect(response.body).to be_json_eql(auth.user.send(attr.to_sym).to_json)
                .at_path("user/#{attr}")
@@ -38,8 +39,8 @@ describe Api::V1::UsersController do
       end
 
       context 'success response' do
-        %w(id first_name last_name location
-           nick description attachment).each do |attr|
+        %w[id first_name last_name location
+           nick description attachment].each do |attr|
              it "contains #{attr} attribute" do
                expect(response.body).to be_json_eql(auth.user.send(attr.to_sym).to_json)
                  .at_path("current_user/#{attr}")
@@ -59,7 +60,7 @@ describe Api::V1::UsersController do
       end
 
       context 'errors' do
-        %w(first_name last_name).each do |attr|
+        %w[first_name last_name].each do |attr|
           it "contains #{attr} key" do
             expect(JSON.parse(response.body)['errors']).to have_key(attr)
           end
@@ -72,7 +73,7 @@ describe Api::V1::UsersController do
     before { get :statistics, params: { id: auth.user.id } }
 
     context 'success response' do
-      %w(directions steps directions_steps).each do |attr|
+      %w[directions steps directions_steps].each do |attr|
         it "contains #{attr} attribute" do
           expect(JSON.parse(response.body)['statistics']).to have_key(attr)
         end
@@ -90,8 +91,8 @@ describe Api::V1::UsersController do
         }
       end
 
-      %w(id first_name last_name location
-         nick description attachment).each do |attr|
+      %w[id first_name last_name location
+         nick description attachment].each do |attr|
            it "contains #{attr} attribute" do
              expect(response.body).to be_json_eql(auth.user.send(attr.to_sym).to_json)
                .at_path("current_user/#{attr}")
@@ -108,7 +109,7 @@ describe Api::V1::UsersController do
       end
 
       context 'errors' do
-        %w(password).each do |attr|
+        %w[password].each do |attr|
           it "contains #{attr} key" do
             expect(JSON.parse(response.body)['errors']).to have_key(attr)
           end

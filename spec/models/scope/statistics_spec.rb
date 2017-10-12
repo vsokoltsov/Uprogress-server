@@ -33,7 +33,7 @@ describe Scope::Statistics do
         end
       end
 
-      %w(#3366CC #DC3912 #FF9900).each_with_index do |color, index|
+      %w[#3366CC #DC3912 #FF9900].each_with_index do |color, index|
         it "object array include hash with color #{color}" do
           expect(subject[index][:color]).to eq(color)
         end
@@ -60,7 +60,7 @@ describe Scope::Statistics do
         expect(subject.size).to eq(3)
       end
 
-      ['Finished', 'Cancelled', 'In progress'].each_with_index do |label|
+      ['Finished', 'Cancelled', 'In progress'].each do |label|
         it "object array include hash with label #{label}" do
           expect(subject.map { |x| x[:label] }).to include(label)
         end

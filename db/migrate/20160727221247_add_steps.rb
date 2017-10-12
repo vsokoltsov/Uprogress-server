@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class AddSteps < ActiveRecord::Migration
   def change
     create_table :steps do |t|

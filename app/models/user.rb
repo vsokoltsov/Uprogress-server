@@ -1,11 +1,12 @@
 # frozen_string_literal: true
-class User < ActiveRecord::Base
+
+class User < ApplicationRecord
   extend FriendlyId
 
-  has_many :authorizations
+  has_many :authorizations, dependent: :destroy
   has_many :directions, dependent: :destroy
   has_one :attachment, as: :attachable, dependent: :destroy
-  has_one :notification_setting
+  has_one :notification_setting, dependent: :destroy
   has_many :system_logs, dependent: :destroy
 
   has_secure_password

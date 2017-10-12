@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Service::Notification::Ios < Service::Notification::Base
   attr_accessor :ios
 

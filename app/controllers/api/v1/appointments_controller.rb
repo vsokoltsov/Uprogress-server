@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Api::V1::AppointmentsController < Api::ApiController
   before_action :validate_token
   before_action :load_appointment, except: :create

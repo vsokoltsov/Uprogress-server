@@ -1,7 +1,8 @@
 # frozen_string_literal: true
-class Authorization < ActiveRecord::Base
+
+class Authorization < ApplicationRecord
   belongs_to :user
-  has_one :device
+  has_one :device, dependent: :destroy
 
   scope :device_tokens, lambda { |platform|
     includes(:device).where(platform: platform).map { |x| x.device&.token }.compact

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe DirectionSerializer do
@@ -20,7 +21,7 @@ describe DirectionSerializer do
   describe 'attributes' do
     let!(:object) { subject[root_key] }
 
-    %w(id title description percents_result finished_steps_count slug).each do |attr|
+    %w[id title description percents_result finished_steps_count slug].each do |attr|
       it "contains #{attr}" do
         expect(object).to have_key(attr)
       end
@@ -40,7 +41,7 @@ describe DirectionSerializer do
       end
 
       context 'steps attributes' do
-        %w(id title description is_done direction_id).each do |attr|
+        %w[id title description is_done direction_id].each do |attr|
           it "contains #{attr} key" do
             expect(object['steps'].first).to have_key(attr)
           end
@@ -58,7 +59,7 @@ describe DirectionSerializer do
       end
 
       context 'user attributes' do
-        %w(id nick first_name last_name description location).each do |attr|
+        %w[id nick first_name last_name description location].each do |attr|
           it "contains #{attr} key" do
             expect(object['user']).to have_key(attr)
           end

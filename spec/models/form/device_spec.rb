@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require'rails_helper'
+
+require 'rails_helper'
 
 describe Form::Device do
   let!(:auth) { create :authorization }
@@ -35,7 +36,7 @@ describe Form::Device do
     end
 
     context 'errors' do
-      %w(token authorization_id).each do |attr|
+      %w[token authorization_id].each do |attr|
         it "form error contains #{attr}" do
           expect(form.errors.messages).to have_key(attr.to_sym)
         end

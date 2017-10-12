@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe AppointmentSerializer do
@@ -20,7 +21,7 @@ describe AppointmentSerializer do
   describe 'attributes' do
     let!(:object) { subject[root_key] }
 
-    %w(id message repeats available).each do |attr|
+    %w[id message repeats available].each do |attr|
       it "contains #{attr}" do
         expect(object).to have_key(attr)
       end
@@ -36,7 +37,7 @@ describe AppointmentSerializer do
       end
 
       context 'direction attributes' do
-        %w(id title description percents_result finished_steps_count slug).each do |attr|
+        %w[id title description percents_result finished_steps_count slug].each do |attr|
           it "contains #{attr}" do
             expect(object['direction']).to have_key(attr)
           end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class DirectionAppointmentSerializer < ActiveModel::Serializer
   attributes :id, :message, :date, :created_at,
              :repeats, :next_date, :available

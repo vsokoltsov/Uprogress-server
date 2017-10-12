@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Api::V1::SessionsController do
@@ -29,7 +30,7 @@ describe Api::V1::SessionsController do
       before { post :create, params: { user: {} } }
 
       context 'error messages' do
-        %w(email password authorization).each do |attr|
+        %w[email password authorization].each do |attr|
           it "contains #{attr} key" do
             expect(JSON.parse(response.body)['errors']).to have_key(attr)
           end

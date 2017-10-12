@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Api::V1::AttachmentsController do
@@ -26,7 +27,7 @@ describe Api::V1::AttachmentsController do
     context 'success response' do
       before { post :create, params: attachment_attributes }
 
-      %w(attachable_type attachable_id url id).each do |attr|
+      %w[attachable_type attachable_id url id].each do |attr|
         it "contains #{attr} attribute" do
           expect(JSON.parse(response.body)['attachment']).to have_key(attr)
         end

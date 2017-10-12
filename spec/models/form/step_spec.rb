@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Form::Step do
@@ -28,7 +29,7 @@ describe Form::Step do
       context 'errors' do
         before { form.submit }
 
-        %w(title description).each do |attr|
+        %w[title description].each do |attr|
           it "errors array contains #{attr}" do
             expect(form.errors.messages).to have_key(attr.to_sym)
           end

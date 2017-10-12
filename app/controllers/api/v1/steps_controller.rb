@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Api::V1::StepsController < Api::ApiController
   before_action :validate_token, except: :index
 

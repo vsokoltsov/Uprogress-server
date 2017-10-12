@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Api::V1::DevicesController < Api::ApiController
   before_action :validate_token
 

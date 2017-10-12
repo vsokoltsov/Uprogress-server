@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 namespace :deploy do
   desc 'Deploy application'
   task production: :environment do

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Service::NotificationTransmitter
   def send_appointments
     appointments_scope.each do |appointment|

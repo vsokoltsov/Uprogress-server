@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Service::PushNotifications
   attr_accessor :user
 

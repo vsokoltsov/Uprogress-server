@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Api::V1::NotificationSettingsController do
@@ -14,7 +15,7 @@ describe Api::V1::NotificationSettingsController do
     context 'success' do
       before { get_with_token auth, :index, user_id: auth.user.id }
 
-      %w(id user_id push_enabled mail_enabled).each do |attr|
+      %w[id user_id push_enabled mail_enabled].each do |attr|
         it "success response contains #{attr} attribute" do
           expect(response.body).to be_json_eql(setting.send(attr.to_sym).to_json)
             .at_path("setting/#{attr}")

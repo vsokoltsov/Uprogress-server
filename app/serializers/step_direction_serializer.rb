@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class StepDirectionSerializer < ActiveModel::Serializer
   attributes :id, :title, :description, :percents_result
 

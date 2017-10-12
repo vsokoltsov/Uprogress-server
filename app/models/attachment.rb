@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-class Attachment < ActiveRecord::Base
+
+class Attachment < ApplicationRecord
   mount_uploader :file, FileUploader
   belongs_to :attachable, polymorphic: true
 end
