@@ -10,6 +10,12 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/db-data
 
+  redis:
+    image: redis
+    command: redis-server
+    ports:
+      - '6379:6379'
+
   app:
     tty: true
     stdin_open: true
