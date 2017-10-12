@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Service::Appointment::Base
   attr_accessor :user, :direction, :appointment, :notification_setting
 

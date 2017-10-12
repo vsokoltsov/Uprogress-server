@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+
 class Api::V1::DirectionsController < Api::ApiController
   before_action :find_user
-  before_action :validate_token, except: [:index, :show]
+  before_action :validate_token, except: %i[index show]
 
   def index
     directions = @user.directions.limit(10).page(params[:page] || 1).per(10)

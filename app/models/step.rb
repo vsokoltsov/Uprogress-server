@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-class Step < ActiveRecord::Base
+
+class Step < ApplicationRecord
   belongs_to :direction, counter_cache: true
 
   scope :active, -> { where(is_done: false) }

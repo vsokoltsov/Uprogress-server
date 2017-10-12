@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Form::Session do
@@ -31,7 +32,7 @@ describe Form::Session do
       context 'errors' do
         before { form.submit }
 
-        %w(email password authorization).each do |attr|
+        %w[email password authorization].each do |attr|
           it "error message contains #{attr} key" do
             expect(form.errors.messages).to have_key(attr.to_sym)
           end

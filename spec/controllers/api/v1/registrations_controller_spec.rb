@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Api::V1::RegistrationsController do
@@ -47,7 +48,7 @@ describe Api::V1::RegistrationsController do
       context 'errors' do
         before { post :create, params: { user: {} } }
 
-        %w(email password nick authorization).each do |attr|
+        %w[email password nick authorization].each do |attr|
           it "contains #{attr} attribute" do
             expect(JSON.parse(response.body)['errors']).to have_key(attr)
           end

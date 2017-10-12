@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Service::IosClient
   attr_accessor :apn
 

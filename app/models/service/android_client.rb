@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Service::AndroidClient
   DEFAULT_TITLE = 'UProgress'
   FIREBASE_URL = 'https://fcm.googleapis.com/fcm/send'

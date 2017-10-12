@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Api::V1::SessionsController < Api::ApiController
   def create
     form = Form::Session.new(nil, params[:user]&.to_unsafe_hash)

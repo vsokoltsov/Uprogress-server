@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class CreateUserNotificationSettings < ActiveRecord::Migration[5.0]
   def change
     create_table :notification_settings do |t|

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class CreateDirections < ActiveRecord::Migration
   def change
     create_table :directions do |t|

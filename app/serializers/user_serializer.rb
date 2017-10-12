@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class UserSerializer < ActiveModel::Serializer
   attr_accessor :query_scope
   attributes :id, :nick, :first_name, :last_name, :description, :location,

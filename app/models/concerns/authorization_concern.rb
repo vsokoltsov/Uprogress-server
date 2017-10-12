@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module AuthorizationConcern
   def create_or_update_authorization(attr)
     return unless attr

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module JsonWebToken
   USER_NOT_FOUND = 'User not found'
   TOKEN_INVALID = 'Authorization token invalid'

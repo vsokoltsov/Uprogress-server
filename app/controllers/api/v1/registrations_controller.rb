@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Api::V1::RegistrationsController < Api::ApiController
   def create
     form = Form::Registration.new(User.new, params[:user]&.to_unsafe_hash)

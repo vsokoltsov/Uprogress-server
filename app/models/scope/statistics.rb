@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Scope::Statistics
   attr_accessor :user
 

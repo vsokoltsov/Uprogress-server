@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe CurrentUserSerializer do
@@ -18,7 +19,7 @@ describe CurrentUserSerializer do
   describe 'attributes' do
     let!(:object) { subject[root_key] }
 
-    %w(id nick first_name last_name description location).each do |attr|
+    %w[id nick first_name last_name description location].each do |attr|
       it "contains #{attr}" do
         expect(object).to have_key(attr)
       end
@@ -38,7 +39,7 @@ describe CurrentUserSerializer do
       end
 
       context 'attachment attributes' do
-        %w(id attachable_id attachable_type created_at url).each do |attr|
+        %w[id attachable_id attachable_type created_at url].each do |attr|
           it "has #{attr} key" do
             expect(object['attachment']).to have_key(attr)
           end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Api::V1::DirectionsController do
@@ -16,7 +17,7 @@ describe Api::V1::DirectionsController do
     context 'response' do
       before { get :index, params: { user_id: auth.user.id } }
 
-      %w(id title description percents_result steps_count finished_steps_count).each do |attr|
+      %w[id title description percents_result steps_count finished_steps_count].each do |attr|
         it "success response contains #{attr}" do
           expect(response.body).to be_json_eql(direction.send(attr.to_sym).to_json)
             .at_path("directions/0/#{attr}")
@@ -34,7 +35,7 @@ describe Api::V1::DirectionsController do
     context 'response' do
       before { get :show, params: { user_id: auth.user.id, id: direction } }
 
-      %w(id title description percents_result steps finished_steps_count).each do |attr|
+      %w[id title description percents_result steps finished_steps_count].each do |attr|
         it "success response contains #{attr}" do
           expect(response.body).to be_json_eql(direction.send(attr.to_sym).to_json)
             .at_path("direction/#{attr}")
@@ -56,7 +57,7 @@ describe Api::V1::DirectionsController do
           post_with_token auth, :create, user_id: auth.user.id, direction: direction.attributes
         end
 
-        %w(id title description percents_result steps finished_steps_count).each do |attr|
+        %w[id title description percents_result steps finished_steps_count].each do |attr|
           it "success response contains #{attr}" do
             expect(response.body).to be_json_eql(Direction.last.send(attr.to_sym).to_json)
               .at_path("direction/#{attr}")
@@ -76,7 +77,7 @@ describe Api::V1::DirectionsController do
     context 'errors' do
       before { post_with_token auth, :create, user_id: auth.user.id, direction: {} }
 
-      %w(title description).each do |attr|
+      %w[title description].each do |attr|
         it "errors array contains #{attr}" do
           expect(JSON.parse(response.body)['errors']).to have_key(attr)
         end
@@ -109,7 +110,7 @@ describe Api::V1::DirectionsController do
           direction.reload
         end
 
-        %w(id title description percents_result steps finished_steps_count).each do |attr|
+        %w[id title description percents_result steps finished_steps_count].each do |attr|
           it "success response contains #{attr}" do
             expect(response.body).to be_json_eql(
               Direction.find(direction.id).send(attr.to_sym).to_json
@@ -131,7 +132,7 @@ describe Api::V1::DirectionsController do
           put_with_token auth, :update, user_id: auth.user.id, id: direction.id, direction: {}
         end
 
-        %w(title description).each do |attr|
+        %w[title description].each do |attr|
           it "errors array contains #{attr}" do
             expect(JSON.parse(response.body)['errors']).to have_key(attr)
           end

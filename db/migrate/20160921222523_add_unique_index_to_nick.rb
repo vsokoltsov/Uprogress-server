@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class AddUniqueIndexToNick < ActiveRecord::Migration
   def up
     remove_index :users, :nick if index_exists?(:users, :nick)

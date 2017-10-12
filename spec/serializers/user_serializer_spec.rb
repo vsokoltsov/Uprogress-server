@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe UserSerializer do
@@ -17,8 +18,8 @@ describe UserSerializer do
   describe 'attributes' do
     let!(:object) { subject[root_key] }
 
-    %w(id nick first_name last_name description location
-       finished_directions new_directions recent_actions).each do |attr|
+    %w[id nick first_name last_name description location
+       finished_directions new_directions recent_actions].each do |attr|
       it "contains #{attr}" do
         expect(object).to have_key(attr)
       end

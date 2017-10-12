@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class CurrentUserSerializer < ActiveModel::Serializer
   attributes :id, :email, :nick, :first_name, :last_name, :description, :location
 

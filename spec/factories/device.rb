@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 FactoryGirl.define do
   factory :device do
     token 'c9E000EClDE:APA91bG0A1O-soLjYt46dHEiZ-YkXG5dYCa5yg3kbz
